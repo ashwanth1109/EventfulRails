@@ -2,6 +2,8 @@
 // import CategoryPage from "./pages/CategoryPage";
 // import DashboardPage from "./pages/DashboardPage";
 
+// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 // const App = () => (
 //     <Router>
 //         <div>

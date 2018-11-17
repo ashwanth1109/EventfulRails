@@ -3,15 +3,28 @@ import "./Custom.css";
 import LandingPage from "./pages/LandingPage";
 import CategoryPage from "./pages/CategoryPage";
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
+class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            page: 1
+        };
+    }
 
-const App = () => (
-    <Router>
-        <div>
-            <Route exact path="/" component={LandingPage} />
-            <Route exact path="/categories" component={CategoryPage} />
-        </div>
-    </Router>
-);
+    login = () => {
+        console.log(`user should log in`);
+        this.setState({
+            page: 2
+        });
+    };
+    render() {
+        const { page } = this.state;
+        if (page === 1) {
+            return <LandingPage login={() => this.login()} />;
+        } else if (page === 2) {
+            return <CategoryPage />;
+        }
+    }
+}
 
 export default App;
