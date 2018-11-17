@@ -13,7 +13,7 @@ class App extends Component {
         fetch("/users")
             .then(res => {
                 console.log(res);
-                res.json();
+                return res.json();
             })
             .then(data => {
                 console.log(data);
