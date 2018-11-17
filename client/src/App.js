@@ -17,7 +17,7 @@ class App extends Component {
             })
             .then(data => {
                 this.setState({
-                    test: data.message
+                    test: data[0].name
                 });
             });
     }
@@ -26,7 +26,7 @@ class App extends Component {
             <div className="App">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
-                    <p>{this.state.test}</p>
+                    <p>Hello {this.state.test}</p>
                     <a
                         className="App-link"
                         href="https://reactjs.org"
