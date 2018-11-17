@@ -16,10 +16,9 @@ class App extends Component {
                 return res.json();
             })
             .then(data => {
-                console.log(data);
-                // this.setState({
-                //     test: data.message
-                // });
+                this.setState({
+                    test: data.message
+                });
             });
     }
     render() {
