@@ -3,6 +3,14 @@ import "../Custom.css";
 
 export default class LandingPage extends Component {
     render() {
-        return <h1>This is the landing page</h1>;
+        return (
+            <div>
+                <img
+                    src="../assets/eventfulBackground.png"
+                    alt="Eventful Background"
+                    className="screenW screenH"
+                />
+            </div>
+        );
     }
 }
