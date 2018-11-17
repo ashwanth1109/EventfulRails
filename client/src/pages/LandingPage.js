@@ -6,7 +6,7 @@ export default class LandingPage extends Component {
         return (
             <div>
                 <img
-                    src="../assets/eventfulBackground.png"
+                    src="./assets/eventfulBackground.png"
                     alt="Eventful Background"
                     className="screenW screenH"
                 />
