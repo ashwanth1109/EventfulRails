@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../Custom.css";
+import "../App.css";
 import "../animations.css";
 import "../profile.css";
 import logo from "../assets/eventfulCircleLogo.png";
@@ -11,8 +12,7 @@ import filming from "../assets/filmingCategory.png";
 import cooking from "../assets/cookingCategory.png";
 import books from "../assets/booksCategory.png";
 import Spacer from "../components/Spacer";
-
-import { Route } from "react-router-dom";
+import CategoryDiv from "../components/CategoryDiv";
 
 class CategoryPage extends Component {
     constructor(props) {
@@ -78,84 +78,17 @@ class CategoryPage extends Component {
                     <Spacer w={20} />
                 </nav>
                 <Spacer h={20} />
-                <div className="flex row wrap center screenW">
+                <div className="container">
                     {/* This is just placeholder divs until we populate the data properly */}
-                    <div>
-                        <div className="fQuicksand fade fade:hover width400 height245 flex center abs fWhite bRad10 cPointer">
-                            CODING
-                        </div>
-                        <img
-                            src={coding}
-                            alt="coding"
-                            className="width400 bRad10"
-                        />
-                    </div>
-                    <Spacer w={10} />
-                    <div>
-                        <Route
-                            render={({ history }) => (
-                                <div>
-                                    <div
-                                        className="fQuicksand fade fade:hover width400 height245 flex center abs fWhite bRad10 cPointer"
-                                        onClick={() => {
-                                            history.push("/dashboard");
-                                        }}
-                                    >
-                                        GAMING
-                                    </div>
-                                    <img
-                                        src={gaming}
-                                        alt="gaming"
-                                        className="width400 bRad10"
-                                    />
-                                </div>
-                            )}
-                        />
-                    </div>
-                    <Spacer w={10} />
-                    <div>
-                        <div className="fQuicksand fade fade:hover width400 height245 flex center abs fWhite bRad10 cPointer">
-                            PHOTOGRAPHY
-                        </div>
-                        <img
-                            src={photography}
-                            alt="photography"
-                            className="width400 bRad10"
-                        />
-                    </div>
-                    <Spacer w={10} />
-                    <div>
-                        <div className="fQuicksand fade fade:hover width400 height245 flex center abs fWhite bRad10 cPointer">
-                            FILMING
-                        </div>
-                        <img
-                            src={filming}
-                            alt="filming"
-                            className="width400 bRad10"
-                        />
-                    </div>
-                    <Spacer w={10} />
-                    <div>
-                        <div className="fQuicksand fade fade:hover width400 height245 flex center abs fWhite bRad10 cPointer">
-                            BOOKS
-                        </div>
-                        <img
-                            src={books}
-                            alt="books"
-                            className="width400 bRad10"
-                        />
-                    </div>
-                    <Spacer w={10} />
-                    <div>
-                        <div className="fQuicksand fade fade:hover width400 height245 flex center abs fWhite bRad10 cPointer">
-                            COOKING
-                        </div>
-                        <img
-                            src={cooking}
-                            alt="cooking"
-                            className="width400 bRad10"
-                        />
-                    </div>
+                    <CategoryDiv image={coding} categoryName="coding" />
+                    <CategoryDiv image={gaming} categoryName="gaming" />
+                    <CategoryDiv
+                        image={photography}
+                        categoryName="photography"
+                    />
+                    <CategoryDiv image={filming} categoryName="filming" />
+                    <CategoryDiv image={books} categoryName="books" />
+                    <CategoryDiv image={cooking} categoryName="cooking" />
                 </div>
             </div>
         );
