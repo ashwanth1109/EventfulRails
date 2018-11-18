@@ -7,7 +7,7 @@ export default class EventChip extends Component {
             return (
                 <div className="used flex column bRad10 center width150 height80">
                     <div className="fSize15 fQuicksand fWeight500">{name}</div>
-                    <div className="fQuicksand">{date}</div>
+                    <div className="fQuicksand fPink">{date}</div>
                 </div>
             );
         } else {
