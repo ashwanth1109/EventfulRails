@@ -15,6 +15,11 @@
     height: 100%;
 }
 
+/*====== WIDTH: PERCENTAGE ======*/
+.widthP80 {
+    width: 80%;
+}
+
 /*====== WIDTH: SPECIFIC ======*/
 .width200 {
     width: 200px;
@@ -24,6 +29,9 @@
 }
 .width400 {
     width: 400px;
+}
+.width420 {
+    width: 420px;
 }
 .width450 {
     width: 450px;
@@ -43,7 +51,7 @@
 
 /*====== HEIGHT: SPECIFIC ======*/
 .height10 {
-  height: 10px;
+    height: 10px;
 }
 .height40 {
     height: 40px;
@@ -84,7 +92,7 @@
     flex-direction: column;
 }
 .wrap {
-  flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 .flex1 {
     flex: 1;
@@ -181,6 +189,11 @@
 }
 .jAround {
     justify-content: space-around;
+}
+
+/*====== MARGIN ======*/
+.mAuto {
+    margin: auto;
 }
 
 /*====== ABSOLUTE ======*/

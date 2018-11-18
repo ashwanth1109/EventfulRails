@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../Custom.css";
+import "../App.css";
 import "../animations.css";
 import "../profile.css";
 import logo from "../assets/eventfulCircleLogo.png";
@@ -12,8 +13,6 @@ import cooking from "../assets/cookingCategory.png";
 import books from "../assets/booksCategory.png";
 import Spacer from "../components/Spacer";
 import CategoryDiv from "../components/CategoryDiv";
-
-import { Route } from "react-router-dom";
 
 class CategoryPage extends Component {
     constructor(props) {
@@ -79,21 +78,16 @@ class CategoryPage extends Component {
                     <Spacer w={20} />
                 </nav>
                 <Spacer h={20} />
-                <div className="flex row wrap center screenW">
+                <div className="container">
                     {/* This is just placeholder divs until we populate the data properly */}
                     <CategoryDiv image={coding} categoryName="coding" />
-                    <Spacer w={10} />
                     <CategoryDiv image={gaming} categoryName="gaming" />
-                    <Spacer w={10} />
                     <CategoryDiv
                         image={photography}
                         categoryName="photography"
                     />
-                    <Spacer w={10} />
                     <CategoryDiv image={filming} categoryName="filming" />
-                    <Spacer w={10} />
                     <CategoryDiv image={books} categoryName="books" />
-                    <Spacer w={10} />
                     <CategoryDiv image={cooking} categoryName="cooking" />
                 </div>
             </div>
