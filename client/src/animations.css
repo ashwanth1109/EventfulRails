@@ -1,0 +1,16 @@
+/*======= TRANSITIONS =======*/
+.fade {
+    opacity: 0;
+    transition: 1s;
+}
+.fade:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, .6);
+    transition: 1s;
+}
+.rotate {
+    transition: 1s;
+    transform: rotate(180deg);
+}
+
+/*======= KEY FRAMES =======*/

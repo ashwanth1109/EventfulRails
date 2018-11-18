@@ -1,0 +1,14 @@
+/*======= PROFILE =======*/
+.bg {
+  background-image: url('../src/assets/blurBackground.png');
+  background-size: cover;
+  background-position: top;
+}
+.profilePic {
+  display: block;
+  min-width: 200px;
+  min-height: 200px;
+  background-color: #fff;
+  border: .2em solid #ff3697;
+  border-radius: 100%;
+}

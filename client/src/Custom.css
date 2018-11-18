@@ -39,11 +39,29 @@
 }
 
 /*====== HEIGHT: SPECIFIC ======*/
+.height10 {
+  height: 10px;
+}
+.height40 {
+    height: 40px;
+}
 .height60 {
     height: 60px;
 }
+.height70 {
+    height: 70px;
+}
+.height80 {
+    height: 80px;
+}
 .height100 {
     height: 100px;
+}
+.height245 {
+    height: 245px;
+}
+.height300 {
+    height: 300px;
 }
 
 /*====== FLEX ======*/
@@ -55,6 +73,9 @@
 }
 .column {
     flex-direction: column;
+}
+.wrap {
+  flex-wrap: wrap;
 }
 .flex1 {
     flex: 1;
@@ -102,6 +123,9 @@
 }
 
 /*====== BACKGROUND COLOR ======*/
+.black {
+    background-color: #000;
+}
 .blue {
     background-color: #08a7d0;
 }
