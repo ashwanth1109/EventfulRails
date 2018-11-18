@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-
+import logo from "../assets/eventfulCircleLogo.png";
+import Spacer from "./Spacer";
+import pinkArrow from "../assets/pinkArrow.png";
 export default class Header extends Component {
     constructor(props) {
         super(props);
@@ -9,34 +11,56 @@ export default class Header extends Component {
     }
     render() {
         const { expanded } = this.state;
-        let profileDivH = "0px";
         let darkenColor = "";
+        let topOfHeader = "";
+        let arrowClass = "";
         if (expanded) {
-            profileDivH = "400px";
             darkenColor = "#000000AA";
+            topOfHeader = "0px";
+            arrowClass = "height10 cPointer transition1 rotate";
         } else {
-            profileDivH = "0px";
             darkenColor = "#00000000";
+            topOfHeader = "-520px";
+            arrowClass = "height10 cPointer transition1";
         }
+        let name = "Ashwanth";
         return (
             <div>
                 <div
                     className="abs screenW screenH transitionBg1"
                     style={{ backgroundColor: darkenColor }}
                 />
-                <div className="abs fullW flex column">
+                <div
+                    className="abs bg fullW height600 transition1 flex column zIndex3"
+                    style={{ top: topOfHeader }}
+                >
+                    <div className="flex1">
+                        <div>
+                            <div />
+                        </div>
+                        <div>
+                            <div />
+                        </div>
+                    </div>
                     <div
-                        className="white fullW transitionH1"
-                        style={{ height: profileDivH }}
-                    />
-                    <div
-                        className="height80 cPointer blue zIndex2"
-                        onClick={e => {
-                            e.stopPropagation();
-                            this.props.headerState(!expanded);
-                            this.setState({ expanded: !expanded });
-                        }}
-                    />
+                        className="height80 flex row aCenter cPointer blackO40"
+                        onClick={() => this.setState({ expanded: !expanded })}
+                    >
+                        <Spacer w={40} />
+                        <img src={logo} alt="logo" className="height60" />
+                        <div className="flex1" />
+                        <div className="fWhite fQuicksand fSize15 fWeight500">
+                            {name.toUpperCase()}
+                        </div>
+                        <Spacer w={10} />
+                        <img
+                            src={pinkArrow}
+                            alt="arrow"
+                            className={arrowClass}
+                            onClick={this.toggleModal}
+                        />
+                        <Spacer w={40} />
+                    </div>
                 </div>
             </div>
         );
