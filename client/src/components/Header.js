@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import logo from "../assets/eventfulCircleLogo.png";
 import Spacer from "./Spacer";
 import pinkArrow from "../assets/pinkArrow.png";
+import Profile from "./Profile";
 export default class Header extends Component {
     constructor(props) {
         super(props);
@@ -27,21 +28,14 @@ export default class Header extends Component {
         return (
             <div>
                 <div
-                    className="abs screenW screenH transitionBg1"
+                    className="fixed screenW screenH transitionBg1 oHidden"
                     style={{ backgroundColor: darkenColor }}
                 />
                 <div
-                    className="abs bg fullW height600 transition1 flex column zIndex3"
+                    className="fixed bg fullW height600 transition1 flex column zIndex3 oHidden"
                     style={{ top: topOfHeader }}
                 >
-                    <div className="flex1">
-                        <div>
-                            <div />
-                        </div>
-                        <div>
-                            <div />
-                        </div>
-                    </div>
+                    <Profile />
                     <div
                         className="height80 flex row aCenter cPointer blackO40"
                         onClick={() => this.setState({ expanded: !expanded })}
