@@ -36,6 +36,14 @@ export default class Header extends Component {
                     style={{ top: topOfHeader }}
                 >
                     <Profile />
+                    <div className="flex row">
+                        <div className="flex1" />
+                        <div className="fSize2 fWhite fQuicksand underline cPointer">
+                            Logout
+                        </div>
+                        <Spacer w={40} />
+                    </div>
+                    <Spacer h={20} />
                     <div
                         className="height80 flex row aCenter cPointer blackO40"
                         onClick={() => this.setState({ expanded: !expanded })}
