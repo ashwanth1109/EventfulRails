@@ -32,7 +32,7 @@ export default class Header extends Component {
                     style={{ backgroundColor: darkenColor }}
                 />
                 <div
-                    className="fixed bg fullW height600 transition1 flex column zIndex3 oHidden"
+                    className="fixed bg fullW height600 transition1 flex column zIndex3 oHidden boxShadow"
                     style={{ top: topOfHeader }}
                 >
                     <Profile />
