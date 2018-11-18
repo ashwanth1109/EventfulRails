@@ -13,24 +13,11 @@ import CategoryDiv from "../components/CategoryDiv";
 import Header from "../components/Header";
 
 class CategoryPage extends Component {
-    constructor(props) {
-        super(props);
-        this.toggleModal = this.toggleModal.bind(this);
-        this.state = {
-            open: false
-        };
-    }
-    toggleModal() {
-        console.log("toggling profile");
-        this.setState({
-            open: !this.state.open
-        });
-    }
     render() {
         return (
             <div>
                 <Header />
-                <Spacer h={100} />
+                <Spacer h={150} />
                 <div className="container">
                     {/* This is just placeholder divs until we populate the data properly */}
                     <CategoryDiv image={coding} categoryName="coding" />
@@ -52,6 +39,7 @@ class CategoryPage extends Component {
                     <CategoryDiv image={books} categoryName="books" />
                     <CategoryDiv image={cooking} categoryName="cooking" />
                 </div>
+                <Spacer h={80} />
             </div>
         );
     }

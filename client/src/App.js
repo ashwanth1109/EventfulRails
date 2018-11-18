@@ -16,13 +16,15 @@ class App extends Component {
 
     render() {
         return (
-            <Router>
-                <div>
-                    <Route exact path="/" component={LandingPage} />
-                    <Route path="/category" component={CategoryPage} />
-                    <Route path="/dashboard" component={DashboardPage} />
-                </div>
-            </Router>
+            <div className="white">
+                <Router>
+                    <div>
+                        <Route exact path="/" component={LandingPage} />
+                        <Route path="/category" component={CategoryPage} />
+                        <Route path="/dashboard" component={DashboardPage} />
+                    </div>
+                </Router>
+            </div>
         );
     }
 }
@@ -100,3 +102,17 @@ export default App;
 //     </h1>
 //     <Spacer w={20} />
 // </nav>
+
+// constructor(props) {
+//     super(props);
+//     this.toggleModal = this.toggleModal.bind(this);
+//     this.state = {
+//         open: false
+//     };
+// }
+// toggleModal() {
+//     console.log("toggling profile");
+//     this.setState({
+//         open: !this.state.open
+//     });
+// }
