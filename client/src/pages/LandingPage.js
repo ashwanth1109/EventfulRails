@@ -37,7 +37,7 @@ const SignUpButton = () => (
 );
 
 const SwitchText = props => {
-    if (props.signUp) {
+    if (props.login) {
         return (
             <p className="fWhite fQuicksand">
                 Need to create an account?{" "}
@@ -68,11 +68,11 @@ export default class LandingPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            signUp: false
+            login: true
         };
     }
     render() {
-        const { signUp } = this.state;
+        const { login } = this.state;
         return (
             <div>
                 <img
@@ -106,7 +106,7 @@ export default class LandingPage extends Component {
                             placeholder="Password"
                         />
                         <Spacer h={20} />
-                        {!signUp ? (
+                        {!login ? (
                             <div>
                                 <TextInput
                                     type="password"
@@ -132,12 +132,12 @@ export default class LandingPage extends Component {
                                 </p>
                             </div>
                             <Spacer w={10} />
-                            {signUp ? <LoginButton /> : <SignUpButton />}
+                            {login ? <LoginButton /> : <SignUpButton />}
                             <Spacer w={30} />
                         </div>
                         <SwitchText
-                            signUp={signUp}
-                            onClick={() => this.setState({ signUp: !signUp })}
+                            login={login}
+                            onClick={() => this.setState({ login: !login })}
                         />
                         <Spacer h={100} />
                     </div>
