@@ -38,6 +38,22 @@ class CategoryPage extends Component {
                     <Spacer h={20}/>
                     <h1 className="fullW">
                         User Name
+                        <Spacer h={75}/>
+                        <div className="flex row">
+                            <div className="savedE used">
+                                REACT
+                            </div>
+                            <Spacer w={10}/>
+                            <div className="savedE used">
+                                UX/UI
+                            </div>
+                            <Spacer w={10}/>
+                            <div className="savedE unused">
+                            </div>
+                            <Spacer w={10}/>
+                            <div className="savedE unused">
+                            </div>
+                        </div>
                     </h1>
                 </div>
               :
