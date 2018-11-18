@@ -12,7 +12,7 @@ import cooking from "../assets/cookingCategory.png";
 import books from "../assets/booksCategory.png";
 import Spacer from "../components/Spacer";
 
-import {Route} from 'react-router-dom'
+import { Route } from "react-router-dom";
 
 class CategoryPage extends Component {
     constructor(props) {
@@ -92,20 +92,25 @@ class CategoryPage extends Component {
                     </div>
                     <Spacer w={10} />
                     <div>
-                        <Route render={({history})=>(
-                            <div>
-                            <div 
-                            className="fQuicksand fade fade:hover width400 height245 flex center abs fWhite bRad10 cPointer" 
-                            onClick={()=>{history.push('/dashboard')}}>
-                            GAMING
-                        </div>
-                        <img
-                            src={gaming}
-                            alt="gaming"
-                            className="width400 bRad10"
+                        <Route
+                            render={({ history }) => (
+                                <div>
+                                    <div
+                                        className="fQuicksand fade fade:hover width400 height245 flex center abs fWhite bRad10 cPointer"
+                                        onClick={() => {
+                                            history.push("/dashboard");
+                                        }}
+                                    >
+                                        GAMING
+                                    </div>
+                                    <img
+                                        src={gaming}
+                                        alt="gaming"
+                                        className="width400 bRad10"
+                                    />
+                                </div>
+                            )}
                         />
-                            </div>
-                        )}/>
                     </div>
                     <Spacer w={10} />
                     <div>
