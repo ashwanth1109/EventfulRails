@@ -20,6 +20,9 @@
 .transitionBg1 {
     transition: background-color 1s ease-in-out;
 }
+.transition1 {
+    transition: 1s ease-in-out;
+}
 
 /*====== OPACITY CLASSES ======*/
 .opacity0 {

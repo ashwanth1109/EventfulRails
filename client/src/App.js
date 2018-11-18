@@ -50,3 +50,53 @@ export default App;
 // } else if (page === 2) {
 //     return <CategoryPage />;
 // }
+
+//===========================================
+// HEADER FOR PROFILE
+//===========================================
+// {this.state.open ? (
+//     <div className="black fQuicksand fWhite flex center jBetween height300 bg">
+//         <Spacer w={40} />
+//         <div className="profilePic" />
+//         <Spacer h={20} />
+//         <h1 className="fullW">
+//             User Name
+//             <Spacer h={75} />
+//             <div className="flex row">
+//                 <div className="savedE used">REACT</div>
+//                 <Spacer w={10} />
+//                 <div className="savedE used">UX/UI</div>
+//                 <Spacer w={10} />
+//                 <div className="savedE unused" />
+//                 <Spacer w={10} />
+//                 <div className="savedE unused" />
+//             </div>
+//         </h1>
+//     </div>
+// ) : (
+//     ""
+// )}
+// <nav className="fQuicksand black height80 flex bg">
+//     <img src={logo} alt="logo" className="height80" />
+//     <Spacer h={20} />
+//     <h1 className="fWhite fSize1 flex center">
+//         USER
+//         <Spacer w={10} />
+//         {this.state.open ? (
+//             <img
+//                 src={pinkArrow}
+//                 alt="arrow"
+//                 className="height10 cPointer rotate"
+//                 onClick={this.toggleModal}
+//             />
+//         ) : (
+//             <img
+//                 src={pinkArrow}
+//                 alt="arrow"
+//                 className="height10 cPointer"
+//                 onClick={this.toggleModal}
+//             />
+//         )}
+//     </h1>
+//     <Spacer w={20} />
+// </nav>
