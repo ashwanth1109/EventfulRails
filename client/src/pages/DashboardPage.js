@@ -9,7 +9,6 @@ export default class DashboardPage extends Component {
                 slideshow
             </div>
             <div className="bg fullH width300 fQuicksand fWhite abs flex jCenter">
-              <br/>
                 <div className="width200 height200 bRad100 abs gray">
                 </div>
             </div>
