@@ -4,6 +4,8 @@ import bg from "../assets/backgroundOption3.png";
 import logo from "../assets/eventfulLogo.png";
 import Spacer from "../components/Spacer";
 
+import { Route } from "react-router-dom";
+
 export default class LandingPage extends Component {
     render() {
         return (
@@ -41,18 +43,29 @@ export default class LandingPage extends Component {
                         <Spacer h={30} />
                         <div className="width500 height60 flex row">
                             <Spacer w={30} />
-                            <div
-                                className="flex1 pink bRad10 flex center cPointer"
-                                onClick={() => this.props.login()}
-                            >
-                                <p className="fSize15 fQuicksand fWhite">
-                                    LOGIN
-                                </p>
-                            </div>
+                            {/* ADD LOGIN BUTTON HERE */}
+                            <Route
+                                render={({ history }) => (
+                                    <div
+                                        className="flex1 pink bRad10 flex center cPointer"
+                                        onClick={() => {
+                                            history.push("/category");
+                                        }}
+                                    >
+                                        <p className="fSize15 fQuicksand fWhite">
+                                            LOGIN
+                                        </p>
+                                    </div>
+                                )}
+                            />
                             <Spacer w={10} />
                             <div
                                 className="flex1 pink bRad10 flex center cPointer"
-                                onClick={() => this.signUp()}
+                                onClick={() => {
+                                    console.log(
+                                        "User should be able to sign up"
+                                    );
+                                }}
                             >
                                 <p className="fSize15 fQuicksand fWhite">
                                     SIGN UP
