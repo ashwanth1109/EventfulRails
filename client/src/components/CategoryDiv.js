@@ -15,7 +15,7 @@ export default class CategoryDiv extends Component {
                         render={({ history }) => (
                             <div>
                                 <div
-                                    className="fQuicksand fade fade:hover width400 height245 flex center abs fWhite bRad10 cPointer"
+                                    className="fQuicksand fade fade:hover width400 height245 flex center abs fSize15 fWhite bRad10 cPointer"
                                     onClick={() => {
                                         history.push("/dashboard");
                                     }}

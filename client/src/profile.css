@@ -21,7 +21,6 @@
     height: 75px;
     border-radius: 10px;
     text-align: center;
-    vertical-align: middle;
     line-height: 75px;
 }
 
@@ -31,5 +30,5 @@
 }
 
 .unused {
-    background-color: #000;
+    background-color: #333;
 }
