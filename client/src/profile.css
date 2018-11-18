@@ -1,0 +1,35 @@
+/*======= PROFILE =======*/
+.bg {
+  background-image: url('../src/assets/blurBackground.png');
+  background-size: cover;
+  background-position: top;
+}
+.profilePic {
+  display: block;
+  min-width: 200px;
+  min-height: 200px;
+  background-color: #fff;
+  border: .2em solid #ff3697;
+  border-radius: 100%;
+}
+
+/*======= SAVED EVENTS =======*/
+.savedE {
+  display: block;
+  font-size: 20px;
+  width: 125px;
+  height: 75px;
+  border-radius: 10px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 75px;
+}
+
+.used {
+  background-color: #fff;
+  color: #000;
+}
+
+.unused {
+  background-color: #000;
+}

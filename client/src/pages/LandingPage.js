@@ -23,7 +23,7 @@ export default class LandingPage extends Component {
                             alt="logo"
                             className="imgContain width500"
                         />
-                        <h1 className="fSize2 fQuicksand fWhite fWeight300">
+                        <h1 className="fSize15 fQuicksand fWhite fWeight300">
                             EVENT BOOKING MADE EASY
                         </h1>
                         <Spacer h={50} />
