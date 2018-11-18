@@ -15,14 +15,19 @@ export default class Header extends Component {
         let darkenColor = "";
         let topOfHeader = "";
         let arrowClass = "";
+        let headerClass = "";
         if (expanded) {
             darkenColor = "#000000AA";
             topOfHeader = "0px";
             arrowClass = "height10 cPointer transition1 rotate";
+            headerClass =
+                "fixed bg fullW height600 transition1 flex column zIndex3 oHidden boxShadow";
         } else {
             darkenColor = "#00000000";
             topOfHeader = "-520px";
             arrowClass = "height10 cPointer transition1";
+            headerClass =
+                "fixed bg fullW height600 transition1 flex column zIndex3 oHidden";
         }
         let name = "Ashwanth";
         return (
@@ -31,10 +36,7 @@ export default class Header extends Component {
                     className="fixed screenW screenH transitionBg1 oHidden"
                     style={{ backgroundColor: darkenColor }}
                 />
-                <div
-                    className="fixed bg fullW height600 transition1 flex column zIndex3 oHidden boxShadow"
-                    style={{ top: topOfHeader }}
-                >
+                <div className={headerClass} style={{ top: topOfHeader }}>
                     <Profile />
                     <div className="flex row">
                         <div className="flex1" />

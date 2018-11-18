@@ -12,13 +12,17 @@ class Event
 
     # CREATE TABLE users (id SERIAL PRIMARY KEY, username VARCHAR(16) NOT NULL, password VARCHAR(16) NOT NULL, name VARCHAR(20), profession VARCHAR(20), imageurl VARCHAR(200));
 
-    # CREATE TABLE events (id SERIAL PRIMARY KEY, name VARCHAR(50), eventtype VARCHAR(10), date INTEGER, month VARCHAR(3), location VARCHAR(50), hostedby VARCHAR(20), starttime VARCHAR(5), endtime VARCHAR(5));
+    # CREATE TABLE events (id SERIAL PRIMARY KEY, name VARCHAR(50), type VARCHAR(10), image VARCHAR(200), date INT, month VARCHAR(3), location VARCHAR(50), hostedby VARCHAR(20), starttime VARCHAR(5), endtime VARCHAR(5));
+
+    # CREATE TABLE hosting (id SERIAL PRIMARY KEY, userid INT REFERENCES users, eventid INT REFERENCES events);
 
     # DROP TABLE users;
 
     # INSERT INTO users (username, password, name, profession, imageurl) VALUES ('ashwanth1109', '123', 'Ashwanth A R', 'Javascript Developer', 'https://avatars1.githubusercontent.com/u/32328857?s=460&v=4');
 
-    # INSERT INTO events (name, type, date, month, location, hostedby, starttime, endtime) VALUES ('React Meetup', 'React', 20, 'Nov', 'Bangalore, India', 'Ashwanth', '07:00', '08:00');
+    # INSERT INTO events (name, type, image, date, month, location, hostedby, starttime, endtime) VALUES ('React Meetup', 'React', '', 20, 'Nov', 'Bangalore, India', 'Ashwanth', '07:00', '08:00');
+
+    # INSERT INTO hosting (userid, eventid) VALUES (1, 1);
 
     # SELECT * FROM users;
 
@@ -31,6 +35,7 @@ class Event
                 "id" => result["id"].to_i,
                 "name" => result["name"],
                 "type" => result["type"],
+                "image" => result["image"],
                 "date" => result["date"].to_i,
                 "month" => result["month"],
                 "location" => result["location"],
@@ -47,6 +52,7 @@ class Event
             "id" => result.first["id"].to_i,
             "name" => result.first["name"],
             "type" => result.first["type"],
+            "image" => result.first["image"],
             "date" => result.first["date"].to_i,
             "month" => result.first["month"],
             "location" => result.first["location"],
@@ -59,15 +65,16 @@ class Event
     def self.create(opts)
         result = DB.exec(
             <<-SQL
-                INSERT INTO events (name, type, date, month, location, hostedby, starttime, endtime) 
-                VALUES ('#{opts["name"]}', '#{opts["type"]}', #{opts["date"]}, '#{opts["month"]}', '#{opts["location"]}', '#{opts["hostedby"]}', '#{opts["starttime"]}', '#{opts["endtime"]}' )
-                RETURNING id, name, type, date, month, location, hostedby, starttime, endtime
+                INSERT INTO events (name, type, image, date, month, location, hostedby, starttime, endtime) 
+                VALUES ('#{opts["name"]}', '#{opts["type"]}','#{opts["image"]}', #{opts["date"]}, '#{opts["month"]}', '#{opts["location"]}', '#{opts["hostedby"]}', '#{opts["starttime"]}', '#{opts["endtime"]}' )
+                RETURNING id, name, type, image, date, month, location, hostedby, starttime, endtime
             SQL
         )
         {
             "id" => result.first["id"].to_i,
             "name" => result.first["name"],
             "type" => result.first["type"],
+            "image" => result.first["image"],
             "date" => result.first["date"].to_i,
             "month" => result.first["month"],
             "location" => result.first["location"],
@@ -88,18 +95,22 @@ class Event
         result = DB.exec(
             <<-SQL
                 UPDATE events
-                SET name='#{opts["name"]}', type='#{opts["type"]}', date=#{opts["date"]}, month='#{opts["month"]}', location='#{opts["location"]}', hostedby='#{opts["hostedby"]}', starttime='#{opts["starttime"]}', endtime='#{opts["endtime"]}'
+                SET name='#{opts["name"]}', type='#{opts["type"]}', image='#{opts["image"]}', date=#{opts["date"]}, month='#{opts["month"]}', location='#{opts["location"]}', hostedby='#{opts["hostedby"]}', starttime='#{opts["starttime"]}', endtime='#{opts["endtime"]}'
                 WHERE id=#{id}
-                RETURNING id, name, type, date, month, location, hostedby, starttime, endtime
+                RETURNING id, name, type, image, date, month, location, hostedby, starttime, endtime
             SQL
         )
         {
             "id" => result.first["id"].to_i,
-            "username" => result.first["username"],
-            "password" => result.first["password"],
             "name" => result.first["name"],
-            "profession" => result.first["profession"],
-            "imageurl" => result.first["imageurl"]
+            "type" => result.first["type"],
+            "image" => result.first["image"],
+            "date" => result.first["date"].to_i,
+            "month" => result.first["month"],
+            "location" => result.first["location"],
+            "hostedby" => result.first["hostedby"],
+            "starttime" => result.first["starttime"],
+            "endtime" => result.first["endtime"]
         }
     end
 end
