@@ -219,6 +219,11 @@
     position: absolute;
 }
 
+/*====== Z INDEX ======*/
+.zIndex2 {
+    z-index: 2;
+}
+
 /*====== IMAGE ======*/
 .imgCover {
     object-fit: cover;

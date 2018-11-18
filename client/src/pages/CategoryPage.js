@@ -19,7 +19,8 @@ class CategoryPage extends Component {
         super(props);
         this.toggleModal = this.toggleModal.bind(this);
         this.state = {
-            open: false
+            open: false,
+            headerExpanded: false
         };
     }
     toggleModal() {
@@ -29,12 +30,17 @@ class CategoryPage extends Component {
         });
     }
     render() {
+        let hover = false;
+        const { headerExpanded } = this.state;
+        if (!headerExpanded) {
+            hover = true;
+        }
         return (
             <div>
                 <Header
-                    darkenBackground={darken =>
-                        this.setState({ darkenBackground: darken })
-                    }
+                    headerState={state => {
+                        this.setState({ headerExpanded: state });
+                    }}
                 />
                 {this.state.open ? (
                     <div className="black fQuicksand fWhite flex center jBetween height300 bg">
@@ -85,15 +91,36 @@ class CategoryPage extends Component {
                 <Spacer h={20} />
                 <div className="container">
                     {/* This is just placeholder divs until we populate the data properly */}
-                    <CategoryDiv image={coding} categoryName="coding" />
-                    <CategoryDiv image={gaming} categoryName="gaming" />
                     <CategoryDiv
+                        hover={hover}
+                        image={coding}
+                        categoryName="coding"
+                    />
+                    <CategoryDiv
+                        hover={hover}
+                        image={gaming}
+                        categoryName="gaming"
+                    />
+                    <CategoryDiv
+                        hover={hover}
                         image={photography}
                         categoryName="photography"
                     />
-                    <CategoryDiv image={filming} categoryName="filming" />
-                    <CategoryDiv image={books} categoryName="books" />
-                    <CategoryDiv image={cooking} categoryName="cooking" />
+                    <CategoryDiv
+                        hover={hover}
+                        image={filming}
+                        categoryName="filming"
+                    />
+                    <CategoryDiv
+                        hover={hover}
+                        image={books}
+                        categoryName="books"
+                    />
+                    <CategoryDiv
+                        hover={hover}
+                        image={cooking}
+                        categoryName="cooking"
+                    />
                 </div>
             </div>
         );

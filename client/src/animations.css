@@ -21,4 +21,9 @@
     transition: background-color 1s ease-in-out;
 }
 
+/*====== OPACITY CLASSES ======*/
+.opacity0 {
+    opacity: 0;
+}
+
 /*======= KEY FRAMES =======*/

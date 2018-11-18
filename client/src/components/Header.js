@@ -11,7 +11,6 @@ export default class Header extends Component {
         const { expanded } = this.state;
         let profileDivH = "0px";
         let darkenColor = "";
-        console.log(`Expanded is ${expanded}`);
         if (expanded) {
             profileDivH = "400px";
             darkenColor = "#000000AA";
@@ -31,9 +30,10 @@ export default class Header extends Component {
                         style={{ height: profileDivH }}
                     />
                     <div
-                        className="height80 cPointer blue"
+                        className="height80 cPointer blue zIndex2"
                         onClick={e => {
                             e.stopPropagation();
+                            this.props.headerState(!expanded);
                             this.setState({ expanded: !expanded });
                         }}
                     />

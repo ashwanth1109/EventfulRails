@@ -5,7 +5,14 @@ import Spacer from "../components/Spacer";
 
 export default class CategoryDiv extends Component {
     render() {
-        const { image, categoryName } = this.props;
+        const { image, categoryName, hover } = this.props;
+        let hoverClass = "";
+        if (hover) {
+            hoverClass = "fade fade:hover cPointer";
+        } else {
+            hoverClass = "opacity0";
+        }
+        let divClasses = `fQuicksand ${hoverClass} width400 height245 flex center abs fSize15 fWhite bRad10`;
         return (
             <div className="flex column">
                 <Spacer h={3} />
@@ -13,9 +20,11 @@ export default class CategoryDiv extends Component {
                     render={({ history }) => (
                         <div>
                             <div
-                                className="fQuicksand fade fade:hover width400 height245 flex center abs fSize15 fWhite bRad10 cPointer"
+                                className={divClasses}
                                 onClick={() => {
-                                    history.push("/dashboard");
+                                    if (hover) {
+                                        history.push("/dashboard");
+                                    }
                                 }}
                             >
                                 {categoryName.toUpperCase()}
