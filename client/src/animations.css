@@ -13,4 +13,9 @@
     transform: rotate(180deg);
 }
 
+/*====== TRANSITION CLASSES ======*/
+.transitionH1 {
+    transition: height 1s ease-in-out;
+}
+
 /*======= KEY FRAMES =======*/

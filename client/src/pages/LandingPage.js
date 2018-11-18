@@ -1,12 +1,33 @@
 import React, { Component } from "react";
-import "../Custom.css";
 import bg from "../assets/backgroundOption3.png";
 import logo from "../assets/eventfulLogo.png";
 import Spacer from "../components/Spacer";
 
 import { Route } from "react-router-dom";
+import TextInput from "../components/TextInput";
+
+const Login = () => (
+    <Route
+        render={({ history }) => (
+            <div
+                className="flex1 pink bRad10 flex center cPointer"
+                onClick={() => {
+                    history.push("/category");
+                }}
+            >
+                <p className="fSize15 fQuicksand fWhite">LOGIN</p>
+            </div>
+        )}
+    />
+);
 
 export default class LandingPage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            signUp: false
+        };
+    }
     render() {
         return (
             <div>
@@ -29,50 +50,47 @@ export default class LandingPage extends Component {
                             EVENT BOOKING MADE EASY
                         </h1>
                         <Spacer h={50} />
-                        <input
+                        <TextInput
                             type="email"
-                            className="bRad10 width500 height60"
+                            styleClass="width500"
                             placeholder="Username"
                         />
                         <Spacer h={20} />
-                        <input
+                        <TextInput
                             type="password"
-                            className="bRad10 width500 height60"
+                            styleClass="width500"
                             placeholder="Password"
                         />
                         <Spacer h={30} />
                         <div className="width500 height60 flex row">
                             <Spacer w={30} />
                             {/* ADD LOGIN BUTTON HERE */}
-                            <Route
-                                render={({ history }) => (
-                                    <div
-                                        className="flex1 pink bRad10 flex center cPointer"
-                                        onClick={() => {
-                                            history.push("/category");
-                                        }}
-                                    >
-                                        <p className="fSize15 fQuicksand fWhite">
-                                            LOGIN
-                                        </p>
-                                    </div>
-                                )}
-                            />
-                            <Spacer w={10} />
                             <div
-                                className="flex1 pink bRad10 flex center cPointer"
+                                className="flex1 white bRad10 flex center cPointer bPink"
                                 onClick={() => {
-                                    console.log(
-                                        "User should be able to sign up"
-                                    );
+                                    console.log("Clear the fields");
                                 }}
                             >
-                                <p className="fSize15 fQuicksand fWhite">
-                                    SIGN UP
+                                <p className="fSize15 fQuicksand fPink">
+                                    CLEAR
                                 </p>
                             </div>
+                            <Spacer w={10} />
+                            <Login />
                             <Spacer w={30} />
                         </div>
+                        <p className="fWhite fQuicksand">
+                            Need to create an account?{" "}
+                            <span
+                                className="underline cPointer"
+                                onClick={() => {
+                                    this.setState({ signUp: true });
+                                    console.log("Show sign up page");
+                                }}
+                            >
+                                Click here
+                            </span>
+                        </p>
                         <Spacer h={100} />
                     </div>
                 </div>

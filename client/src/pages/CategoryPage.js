@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "../Custom.css";
 import "../App.css";
 import "../animations.css";
 import "../profile.css";
@@ -13,6 +12,7 @@ import cooking from "../assets/cookingCategory.png";
 import books from "../assets/booksCategory.png";
 import Spacer from "../components/Spacer";
 import CategoryDiv from "../components/CategoryDiv";
+import Header from "../components/Header";
 
 class CategoryPage extends Component {
     constructor(props) {
@@ -31,6 +31,7 @@ class CategoryPage extends Component {
     render() {
         return (
             <div>
+                <Header />
                 {this.state.open ? (
                     <div className="black fQuicksand fWhite flex center jBetween height300 bg">
                         <Spacer w={40} />

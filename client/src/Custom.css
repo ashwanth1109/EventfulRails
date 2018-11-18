@@ -1,5 +1,5 @@
 /*====== IMPORT STATEMENTS ======*/
-@import url("https://fonts.googleapis.com/css?family=Quicksand:300,400");
+@import url("https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700");
 
 /*====== WIDTH & HEIGHT: GENERAL ======*/
 .screenW {
@@ -129,14 +129,19 @@
 .fWeight500 {
     font-weight: 500;
 }
-.fWeight600 {
-    font-weight: 600;
-}
 .fQuicksand {
     font-family: "Quicksand", sans-serif;
 }
 .fWhite {
     color: #fff;
+}
+.fPink {
+    color: #ff3697;
+}
+
+/*====== TEXT DECORATION CLASSES ======*/
+.underline {
+    text-decoration: underline;
 }
 
 /*====== BACKGROUND COLOR ======*/
@@ -151,6 +156,9 @@
 }
 .pink {
     background-color: #ff3697;
+}
+.white {
+    background-color: #fff;
 }
 
 /*====== BACKGROUND COLOR OPACITY ======*/
@@ -196,6 +204,16 @@
     margin: auto;
 }
 
+/*====== PADDING: ALL SIDES ======*/
+.pad10 {
+    padding: 10px;
+}
+
+/*====== BOX SIZING ======*/
+.borderBox {
+    box-sizing: border-box;
+}
+
 /*====== ABSOLUTE ======*/
 .abs {
     position: absolute;
@@ -216,8 +234,16 @@
 .bRad100 {
     border-radius: 100%;
 }
+.bPink {
+    border: 2px solid #ff3697;
+}
 
 /*====== CLICK RELATED ======*/
 .cPointer {
     cursor: pointer;
+}
+
+/*====== FOCUS CLASSES ======*/
+.focusPink:focus {
+    border-color: #ff3697;
 }
