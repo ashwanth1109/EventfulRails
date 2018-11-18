@@ -5,12 +5,25 @@
 }
 .fade:hover {
     opacity: 1;
-    background-color: rgba(0, 0, 0, .6);
-    transition: 1s;
+    background-color: rgba(0, 0, 0, 0.7);
+    transition: 0.8s;
 }
 .rotate {
     transition: 1s;
     transform: rotate(180deg);
+}
+
+/*====== TRANSITION CLASSES ======*/
+.transitionH1 {
+    transition: height 1s ease-in-out;
+}
+.transitionBg1 {
+    transition: background-color 1s ease-in-out;
+}
+
+/*====== OPACITY CLASSES ======*/
+.opacity0 {
+    opacity: 0;
 }
 
 /*======= KEY FRAMES =======*/
