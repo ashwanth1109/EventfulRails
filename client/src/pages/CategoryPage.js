@@ -31,7 +31,11 @@ class CategoryPage extends Component {
     render() {
         return (
             <div>
-                <Header />
+                <Header
+                    darkenBackground={darken =>
+                        this.setState({ darkenBackground: darken })
+                    }
+                />
                 {this.state.open ? (
                     <div className="black fQuicksand fWhite flex center jBetween height300 bg">
                         <Spacer w={40} />

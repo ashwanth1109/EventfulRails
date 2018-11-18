@@ -17,5 +17,8 @@
 .transitionH1 {
     transition: height 1s ease-in-out;
 }
+.transitionBg1 {
+    transition: background-color 1s ease-in-out;
+}
 
 /*======= KEY FRAMES =======*/
