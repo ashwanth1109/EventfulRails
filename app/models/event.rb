@@ -1,4 +1,4 @@
-class User
+class Event
     if (ENV['DATABASE_URL'])
         uri = URI.parse(ENV['DATABASE_URL'])
         DB = PG.connect(uri.hostname, uri.port, nil, nil, uri.path[1..-1],uri.user,uri.password)
@@ -18,57 +18,67 @@ class User
 
     # INSERT INTO users (username, password, name, profession, imageurl) VALUES ('ashwanth1109', '123', 'Ashwanth A R', 'Javascript Developer', 'https://avatars1.githubusercontent.com/u/32328857?s=460&v=4');
 
-    # INSERT INTO events (name, eventtype, date, month, location, hostedby, starttime, endtime) VALUES ('React Meetup', 'React', 20, 'Nov', 'Bangalore, India', 'Ashwanth', '07:00', '08:00');
+    # INSERT INTO events (name, type, date, month, location, hostedby, starttime, endtime) VALUES ('React Meetup', 'React', 20, 'Nov', 'Bangalore, India', 'Ashwanth', '07:00', '08:00');
 
     # SELECT * FROM users;
 
     # SELECT hosting.userid FROM events INNER JOIN hosting ON hosting.eventid = events.id WHERE hosting.eventid = 1;
 
     def self.all
-        results = DB.exec("SELECT * FROM users;")
+        results = DB.exec("SELECT * FROM events;")
         results.map do |result|
             {
                 "id" => result["id"].to_i,
-                "username" => result["username"],
-                "password" => result["password"],
                 "name" => result["name"],
-                "profession" => result["profession"],
-                "imageurl" => result["imageurl"]
+                "type" => result["type"],
+                "date" => result["date"].to_i,
+                "month" => result["month"],
+                "location" => result["location"],
+                "hostedby" => result["hostedby"],
+                "starttime" => result["starttime"],
+                "endtime" => result["endtime"]
             }
         end
     end
 
     def self.find(id)
-        result = DB.exec("SELECT * FROM users WHERE id=#{id};")
+        result = DB.exec("SELECT * FROM events WHERE id=#{id};")
         {
             "id" => result.first["id"].to_i,
-            "username" => result.first["username"],
-            "password" => result.first["password"],
             "name" => result.first["name"],
-            "profession" => result.first["profession"],
-            "imageurl" => result.first["imageurl"]
+            "type" => result.first["type"],
+            "date" => result.first["date"].to_i,
+            "month" => result.first["month"],
+            "location" => result.first["location"],
+            "hostedby" => result.first["hostedby"],
+            "starttime" => result.first["starttime"],
+            "endtime" => result.first["endtime"]
         }
     end
 
     def self.create(opts)
         result = DB.exec(
             <<-SQL
-                INSERT INTO users (username, password) VALUES ('#{opts["username"]}', '#{opts["password"]}')
-                RETURNING id, username, password
+                INSERT INTO events (name, type, date, month, location, hostedby, starttime, endtime) 
+                VALUES ('#{opts["name"]}', '#{opts["type"]}', #{opts["date"]}, '#{opts["month"]}', '#{opts["location"]}', '#{opts["hostedby"]}', '#{opts["starttime"]}', '#{opts["endtime"]}' )
+                RETURNING id, name, type, date, month, location, hostedby, starttime, endtime
             SQL
         )
         {
             "id" => result.first["id"].to_i,
-            "username" => result.first["username"],
-            "password" => result.first["password"],
             "name" => result.first["name"],
-            "profession" => result.first["profession"],
-            "imageurl" => result.first["imageurl"]
+            "type" => result.first["type"],
+            "date" => result.first["date"].to_i,
+            "month" => result.first["month"],
+            "location" => result.first["location"],
+            "hostedby" => result.first["hostedby"],
+            "starttime" => result.first["starttime"],
+            "endtime" => result.first["endtime"]
         }
     end
 
     def self.delete(id)
-        result = DB.exec("DELETE FROM users WHERE id=#{id};")
+        result = DB.exec("DELETE FROM events WHERE id=#{id};")
         {
             "deleted" => true
         }
@@ -77,10 +87,10 @@ class User
     def self.update(id, opts)
         result = DB.exec(
             <<-SQL
-                UPDATE users
-                SET username='#{opts["username"]}', password='#{opts["password"]}', name='#{opts["name"]}', profession='#{opts["profession"]}', imageurl='#{opts["imageurl"]}', savedevents=#{opts["savedevents"]}, hostingevents=#{opts["hostingevents"]}
+                UPDATE events
+                SET name='#{opts["name"]}', type='#{opts["type"]}', date=#{opts["date"]}, month='#{opts["month"]}', location='#{opts["location"]}', hostedby='#{opts["hostedby"]}', starttime='#{opts["starttime"]}', endtime='#{opts["endtime"]}'
                 WHERE id=#{id}
-                RETURNING id, username, password, name, profession, imageurl, savedevents, hostingevents
+                RETURNING id, name, type, date, month, location, hostedby, starttime, endtime
             SQL
         )
         {
