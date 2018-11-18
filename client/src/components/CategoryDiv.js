@@ -8,31 +8,27 @@ export default class CategoryDiv extends Component {
         const { image, categoryName } = this.props;
         return (
             <div className="flex column">
-                <Spacer h={10} />
-                <div className="flex row">
-                    <Spacer w={10} />
-                    <Route
-                        render={({ history }) => (
-                            <div>
-                                <div
-                                    className="fQuicksand fade fade:hover width400 height245 flex center abs fSize15 fWhite bRad10 cPointer"
-                                    onClick={() => {
-                                        history.push("/dashboard");
-                                    }}
-                                >
-                                    {categoryName.toUpperCase()}
-                                </div>
-                                <img
-                                    src={image}
-                                    alt={categoryName}
-                                    className="width400 bRad10"
-                                />
+                <Spacer h={3} />
+                <Route
+                    render={({ history }) => (
+                        <div>
+                            <div
+                                className="fQuicksand fade fade:hover width400 height245 flex center abs fSize15 fWhite bRad10 cPointer"
+                                onClick={() => {
+                                    history.push("/dashboard");
+                                }}
+                            >
+                                {categoryName.toUpperCase()}
                             </div>
-                        )}
-                    />
-                    <Spacer w={10} />
-                </div>
-                <Spacer h={10} />
+                            <img
+                                src={image}
+                                alt={categoryName}
+                                className="width400 bRad10"
+                            />
+                        </div>
+                    )}
+                />
+                <Spacer h={3} />
             </div>
         );
     }

@@ -32,7 +32,7 @@
 }
 
 .container {
-    width: 1260px;
+    width: 1220px;
     margin: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
