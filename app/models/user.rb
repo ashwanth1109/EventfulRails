@@ -10,12 +10,32 @@ class User
     })
     end
 
+    # CREATE TABLE users (id SERIAL PRIMARY KEY, username VARCHAR(16) NOT NULL, password VARCHAR(16) NOT NULL, name VARCHAR(20), profession VARCHAR(20), imageurl VARCHAR(200));
+
+    # CREATE TABLE events (id SERIAL PRIMARY KEY, name VARCHAR(50), eventtype VARCHAR(10), date INTEGER, month VARCHAR(3), location VARCHAR(50), hostedby VARCHAR(20), starttime VARCHAR(5), endtime VARCHAR(5));
+
+    # DROP TABLE users;
+
+    # INSERT INTO users (username, password, name, profession, imageurl) VALUES ('ashwanth1109', '123', 'Ashwanth A R', 'Javascript Developer', 'https://avatars1.githubusercontent.com/u/32328857?s=460&v=4');
+
+    # INSERT INTO events (name, eventtype, date, month, location, hostedby, starttime, endtime) VALUES ('React Meetup', 'React', 20, 'Nov', 'Bangalore, India', 'Ashwanth', '07:00', '08:00');
+
+    # SELECT * FROM users;
+
+    # SELECT hosting.userid FROM events INNER JOIN hosting ON hosting.eventid = events.id WHERE hosting.eventid = 1;
+
     def self.all
         results = DB.exec("SELECT * FROM users;")
         results.map do |result|
             {
                 "id" => result["id"].to_i,
-                "name" => result["name"]
+                "username" => result["username"],
+                "password" => result["password"],
+                "name" => result["name"],
+                "profession" => result["profession"],
+                "imageurl" => result["imageurl"],
+                "savedevents" => result["savedevents"],
+                "hostingevents" => result["hostingevents"]
             }
         end
     end
@@ -24,20 +44,32 @@ class User
         result = DB.exec("SELECT * FROM users WHERE id=#{id};")
         {
             "id" => result.first["id"].to_i,
-            "name" => result.first["name"]
+            "username" => result.first["username"],
+            "password" => result.first["password"],
+            "name" => result.first["name"],
+            "profession" => result.first["profession"],
+            "imageurl" => result.first["imageurl"],
+            "savedevents" => result.first["savedevents"],
+            "hostingevents" => result.first["hostingevents"]
         }
     end
 
     def self.create(opts)
         result = DB.exec(
             <<-SQL
-                INSERT INTO users (name) VALUES ('#{opts["name"]}')
-                RETURNING id, name
+                INSERT INTO users (username, password) VALUES ('#{opts["username"]}', '#{opts["password"]}')
+                RETURNING id, username, password
             SQL
         )
         {
             "id" => result.first["id"].to_i,
-            "name" => result.first["name"]
+            "username" => result.first["username"],
+            "password" => result.first["password"],
+            "name" => result.first["name"],
+            "profession" => result.first["profession"],
+            "imageurl" => result.first["imageurl"],
+            "savedevents" => result.first["savedevents"],
+            "hostingevents" => result.first["hostingevents"]
         }
     end
 
@@ -52,14 +84,20 @@ class User
         result = DB.exec(
             <<-SQL
                 UPDATE users
-                SET name='#{opts["name"]}'
+                SET username='#{opts["username"]}', password='#{opts["password"]}', name='#{opts["name"]}', profession='#{opts["profession"]}', imageurl='#{opts["imageurl"]}', savedevents=#{opts["savedevents"]}, hostingevents=#{opts["hostingevents"]}
                 WHERE id=#{id}
-                RETURNING id, name
+                RETURNING id, username, password, name, profession, imageurl, savedevents, hostingevents
             SQL
         )
         {
             "id" => result.first["id"].to_i,
-            "name" => result.first["name"]
+            "username" => result.first["username"],
+            "password" => result.first["password"],
+            "name" => result.first["name"],
+            "profession" => result.first["profession"],
+            "imageurl" => result.first["imageurl"],
+            "savedevents" => result.first["savedevents"],
+            "hostingevents" => result.first["hostingevents"]
         }
     end
 end
