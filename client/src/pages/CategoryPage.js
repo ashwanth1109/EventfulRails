@@ -16,7 +16,10 @@ class CategoryPage extends Component {
     render() {
         return (
             <div>
-                <Header />
+                <Header
+                    userId={this.props.getUserId()}
+                    history={this.props.history}
+                />
                 <Spacer h={150} />
                 <div className="container">
                     {/* This is just placeholder divs until we populate the data properly */}

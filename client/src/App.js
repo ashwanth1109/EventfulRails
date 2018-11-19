@@ -24,6 +24,8 @@ class App extends Component {
         });
     };
 
+    getUserId = () => this.state.userId;
+
     render() {
         console.log(`App is being rendered`);
         return (
@@ -42,7 +44,15 @@ class App extends Component {
                                 />
                             )}
                         />
-                        <Route path="/category" component={CategoryPage} />
+                        <Route
+                            path="/category"
+                            render={props => (
+                                <CategoryPage
+                                    {...props}
+                                    getUserId={() => this.getUserId()}
+                                />
+                            )}
+                        />
                         <Route path="/dashboard" component={DashboardPage} />
                     </div>
                 </Router>

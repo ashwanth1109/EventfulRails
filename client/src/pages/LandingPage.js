@@ -24,9 +24,7 @@ const SignUpButton = props => (
         render={({ history }) => (
             <div
                 className="flex1 pink bRad10 flex center cPointer"
-                onClick={() => {
-                    console.log("user should sign up");
-                }}
+                onClick={() => props.onClick()}
             >
                 <p className="fSize15 fQuicksand fWhite">SIGN UP</p>
             </div>
@@ -71,7 +69,7 @@ export default class LandingPage extends Component {
         };
     }
 
-    componentDidMount() {
+    getUsers = () => {
         fetch("/users").then(res => {
             res.json().then(data => {
                 this.setState({
@@ -79,13 +77,13 @@ export default class LandingPage extends Component {
                 });
             });
         });
+    };
+
+    componentDidMount() {
+        this.getUsers();
     }
 
     login = history => {
-        // this.setState({
-        //     username: this.refs.username.value,
-        //     password: this.refs.password.value
-        // });
         const { users } = this.state;
         const { username, password } = this.refs;
         let userFound = false,
@@ -105,9 +103,38 @@ export default class LandingPage extends Component {
             }
         });
         if (passwordMismatch) {
-            console.log(`passwords don't match`);
+            console.log(`password entered is incorrect`);
         } else if (!userFound) {
             console.log(`user not found in database`);
+        }
+    };
+
+    signUp = () => {
+        const { username, password, password2 } = this.refs;
+        if (password.value === password2.value) {
+            const user = {
+                username: username.value,
+                password: password.value
+            };
+            fetch("/users", {
+                body: JSON.stringify(user),
+                method: "POST",
+                headers: {
+                    //prettier-ignore
+                    "Accept": "application/json, text/plain, */*",
+                    "Content-Type": "application/json"
+                }
+            }).then(res => {
+                res.json().then(data => {
+                    console.log(data);
+                    this.setState({
+                        login: true
+                    });
+                    this.getUsers();
+                });
+            });
+        } else {
+            console.log(`passwords dont match`);
         }
     };
 
@@ -181,7 +208,7 @@ export default class LandingPage extends Component {
                                     onClick={history => this.login(history)}
                                 />
                             ) : (
-                                <SignUpButton />
+                                <SignUpButton onClick={() => this.signUp()} />
                             )}
                             <Spacer w={30} />
                         </div>

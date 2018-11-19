@@ -10,7 +10,23 @@ export default class Header extends Component {
             expanded: false
         };
     }
+
+    componentDidMount() {
+        const { userId, history } = this.props;
+        fetch(`/users/${userId}`).then(res => {
+            if (res.status === 200) {
+                res.json().then(data => {
+                    console.log(data);
+                });
+            } else {
+                console.log(`User not retrieved from db`);
+                history.push("/");
+            }
+        });
+    }
+
     render() {
+        console.log(this.props.userId);
         const { expanded } = this.state;
         let darkenColor = "";
         let topOfHeader = "";
