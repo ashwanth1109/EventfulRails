@@ -32,12 +32,25 @@ class User
         results = DB.exec(
             <<-SQL
                 SELECT
-                    users.*,
-                    hosting.eventid
+                    *
                 FROM users
-                LEFT JOIN hosting
-                ON users.id
+
             SQL
+
+            # <<-SQL
+            #     SELECT
+            #         users.*,
+            #         attendees.eventid,
+            #         attendees.ishost,
+            #         events.id,
+            #         events.name
+            #     FROM users
+            #     LEFT JOIN attendees
+            #     ON users.id = attendees.userid
+            #     LEFT JOIN events
+            #     ON events.id = attendees.eventid
+            #
+            # SQL
         )
         results.map do |result|
             {
@@ -46,7 +59,8 @@ class User
                 "password" => result["password"],
                 "name" => result["name"],
                 "profession" => result["profession"],
-                "imageurl" => result["imageurl"]
+                "imageurl" => result["imageurl"],
+                "event_id" => result["event_id"].to_i
             }
         end
     end
