@@ -30,29 +30,34 @@ class User
 
     def self.all
         results = DB.exec(
-            <<-SQL
-                SELECT
-                    *
-                FROM users
-
-            SQL
-
             # <<-SQL
             #     SELECT
-            #         users.*,
-            #         attendees.eventid,
-            #         attendees.ishost,
-            #         events.id,
-            #         events.name
+            #         *
             #     FROM users
-            #     LEFT JOIN attendees
-            #     ON users.id = attendees.userid
-            #     LEFT JOIN events
-            #     ON events.id = attendees.eventid
             #
             # SQL
+
+            <<-SQL
+                SELECT
+                    users.name,
+                    attendees.ishost,
+                    events.id,
+                    events.name
+                FROM users
+                LEFT JOIN attendees
+                ON users.id = attendees.userid
+                LEFT JOIN events
+                ON events.id = attendees.eventid
+
+            SQL
         )
         results.map do |result|
+            if result["event_id"]
+              event = {
+                "id" => result["event_id"].to_i,
+                "event" => result["event"]
+              }
+            end
             {
                 "id" => result["id"].to_i,
                 "username" => result["username"],
