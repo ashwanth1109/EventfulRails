@@ -11,6 +11,7 @@ export default class Profile extends Component {
             editProfession: false,
             name: "",
             profession: "",
+            imageurl: "",
             imageForm: false
         };
     }
@@ -19,10 +20,11 @@ export default class Profile extends Component {
         const { user } = this.props;
         console.log(user);
         if (user) {
-            const { name, profession } = user;
+            const { name, profession, imageurl } = user;
             this.setState({
                 name: name,
-                profession: profession
+                profession: profession,
+                imageurl: imageurl
             });
         }
     }
@@ -91,20 +93,60 @@ export default class Profile extends Component {
             .catch(err => console.log(err));
     };
 
+    updateImageForUser = (e, imageRef) => {
+        console.log(`update users image url in db`);
+        const { imageForm } = this.state;
+        e.preventDefault();
+        const { user } = this.props;
+        console.log(imageRef);
+        const updatedUser = {
+            username: user.username,
+            password: user.password,
+            name: user.name,
+            profession: user.profession,
+            imageurl: imageRef
+        };
+        fetch(`/users/${user.id}`, {
+            body: JSON.stringify(updatedUser),
+            method: "PUT",
+            headers: {
+                //prettier-ignore
+                "Accept": "application/json, text/plain, */*",
+                "Content-Type": "application/json"
+            }
+        })
+            .then(res => {
+                console.log(res);
+                this.setState({
+                    imageurl: imageRef,
+                    imageForm: !imageForm
+                });
+            })
+            .catch(err => console.log(err));
+    };
+
     render() {
         const {
             name,
             profession,
             editName,
             editProfession,
-            imageForm
+            imageForm,
+            imageurl
         } = this.state;
         console.log(
             `Editname: ${editName} & EditProfession: ${editProfession}`
         );
         return (
             <div className="flex1 flex relative">
-                {imageForm ? <ImageForm toggleImageForm={()=>this.setState({imageForm: !imageForm})}/> : null}
+                {imageForm ? (
+                    <ImageForm
+                        updateImageForUser={(e, imageRef) =>
+                            this.updateImageForUser(e, imageRef)
+                        }
+                        imageurl={imageurl}
+                    />
+                ) : null}
                 <div className="flex1 flex column">
                     <div className="flex3 flex row aCenter jAround">
                         <Spacer w={40} />
@@ -114,7 +156,15 @@ export default class Profile extends Component {
                                 this.setState({ imageForm: !imageForm })
                             }
                         >
-                            Click here
+                            {imageurl ? (
+                                <img
+                                    src={imageurl}
+                                    alt="profile"
+                                    className="width200 height200 bRad100"
+                                />
+                            ) : (
+                                `Click here`
+                            )}
                         </div>
                         <div className="width600 fullH flex column jCenter">
                             {!editName ? (
