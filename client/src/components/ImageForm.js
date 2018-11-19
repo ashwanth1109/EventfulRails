@@ -40,7 +40,7 @@ export default class ImageForm extends Component {
                     >
                         <input
                             type="text"
-                            className=" width500 height40 white pad10 fQuicksand fSize2 fPink bPinkFocus bRad10"
+                            className=" width500 height40 white pad10 fQuicksand fSize2 fPink bPinkFocus bRad10 imgCover"
                             ref="imageurl"
                             value={this.state.imageurl}
                             onChange={() => this.handleUrlChange()}
