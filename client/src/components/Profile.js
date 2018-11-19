@@ -55,6 +55,40 @@ export default class Profile extends Component {
             })
             .catch(err => console.log(err));
     };
+
+    updateProfession = () => {
+        console.log(
+            `profession to be updated to ${this.refs.profession.value}`
+        );
+        const { user } = this.props;
+        const { id } = user;
+        const updatedUser = {
+            username: user.username,
+            password: user.password,
+            name: user.name,
+            profession: this.refs.profession.value,
+            imageurl: user.imageurl
+        };
+        user["profession"] = this.refs.profession.value;
+        fetch(`/users/${id}`, {
+            body: JSON.stringify(updatedUser),
+            method: "PUT",
+            headers: {
+                //prettier-ignore
+                "Accept": "application/json, text/plain, */*",
+                "Content-Type": "application/json"
+            }
+        })
+            .then(res => {
+                console.log(res);
+                this.setState({
+                    editProfession: !this.state.editProfession,
+                    profession: this.refs.profession.value
+                });
+            })
+            .catch(err => console.log(err));
+    };
+
     render() {
         const { name, profession } = this.state;
         const { editName, editProfession } = this.state;
@@ -86,16 +120,29 @@ export default class Profile extends Component {
                                 defaultValue={name}
                             />
                         )}
-                        <div
-                            className="fSize2 fQuicksand fWhite cPointer"
-                            onClick={() =>
-                                this.setState({
-                                    editProfession: !editProfession
-                                })
-                            }
-                        >
-                            {profession ? profession : "Enter profession here"}
-                        </div>
+                        {!editProfession ? (
+                            <div
+                                className="fSize2 fQuicksand fWhite cPointer"
+                                onClick={() =>
+                                    this.setState({
+                                        editProfession: !editProfession
+                                    })
+                                }
+                            >
+                                {profession
+                                    ? profession
+                                    : "Enter profession here"}
+                            </div>
+                        ) : (
+                            <input
+                                type="text"
+                                className="fSize2 fQuicksand pink fWhite cPointer"
+                                ref="profession"
+                                onClick={() => this.updateProfession()}
+                                autoFocus
+                                defaultValue={profession}
+                            />
+                        )}
                     </div>
                     <Spacer w={40} />
                 </div>
