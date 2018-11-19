@@ -7,31 +7,93 @@ export default class Profile extends Component {
         super(props);
         this.state = {
             editName: false,
-            editProfession: false
+            editProfession: false,
+            name: "",
+            profession: ""
         };
     }
-    render() {
+
+    componentWillReceiveProps() {
         const { user } = this.props;
-        let name = "",
-            profession = "";
+        console.log(user);
         if (user) {
-            if (user.name !== null) {
-                name = user.name;
-            }
-            if (user.profession !== null) {
-                profession = user.profession;
-            }
+            const { name, profession } = user;
+            this.setState({
+                name: name,
+                profession: profession
+            });
         }
+    }
+
+    updateName = () => {
+        console.log(`user name to be updated to ${this.refs.name.value}`);
+        const { user } = this.props;
+        const { id } = user;
+        const updatedUser = {
+            username: user.username,
+            password: user.password,
+            name: this.refs.name.value,
+            profession: user.profession,
+            imageurl: user.imageurl
+        };
+        user["name"] = this.refs.name.value;
+        fetch(`/users/${id}`, {
+            body: JSON.stringify(updatedUser),
+            method: "PUT",
+            headers: {
+                //prettier-ignore
+                "Accept": "application/json, text/plain, */*",
+                "Content-Type": "application/json"
+            }
+        })
+            .then(res => {
+                console.log(res);
+                this.setState({
+                    editName: !this.state.editName,
+                    name: this.refs.name.value
+                });
+            })
+            .catch(err => console.log(err));
+    };
+    render() {
+        const { name, profession } = this.state;
+        const { editName, editProfession } = this.state;
+        console.log(
+            `Editname: ${editName} & EditProfession: ${editProfession}`
+        );
         return (
             <div className="flex1 flex column">
                 <div className="flex3 flex row aCenter jAround">
                     <Spacer w={40} />
                     <div className="width200 height200 bRad100 white" />
                     <div className="width600 fullH flex column jCenter">
-                        <div className="fSize4 fQuicksand fWhite cPointer">
-                            {name ? name : "Enter name here"}
-                        </div>
-                        <div className="fSize2 fQuicksand fWhite cPointer">
+                        {!editName ? (
+                            <div
+                                className="fSize4 fQuicksand fWhite cPointer"
+                                onClick={() =>
+                                    this.setState({ editName: !editName })
+                                }
+                            >
+                                {name ? name : "Enter name here"}
+                            </div>
+                        ) : (
+                            <input
+                                type="text"
+                                className="fSize4 fQuicksand pink fWhite cPointer"
+                                ref="name"
+                                onClick={() => this.updateName()}
+                                autoFocus
+                                defaultValue={name}
+                            />
+                        )}
+                        <div
+                            className="fSize2 fQuicksand fWhite cPointer"
+                            onClick={() =>
+                                this.setState({
+                                    editProfession: !editProfession
+                                })
+                            }
+                        >
                             {profession ? profession : "Enter profession here"}
                         </div>
                     </div>
