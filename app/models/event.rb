@@ -33,13 +33,12 @@ class Event
         results.map do |result|
             {
                 "id" => result["id"].to_i,
-                "name" => result["name"],
+                "eventname" => result["eventname"],
                 "type" => result["type"],
                 "image" => result["image"],
                 "date" => result["date"].to_i,
                 "month" => result["month"],
                 "location" => result["location"],
-                "hostedby" => result["hostedby"],
                 "starttime" => result["starttime"],
                 "endtime" => result["endtime"]
             }
@@ -50,13 +49,12 @@ class Event
         result = DB.exec("SELECT * FROM events WHERE id=#{id};")
         {
             "id" => result.first["id"].to_i,
-            "name" => result.first["name"],
+            "eventname" => result.first["eventname"],
             "type" => result.first["type"],
             "image" => result.first["image"],
             "date" => result.first["date"].to_i,
             "month" => result.first["month"],
             "location" => result.first["location"],
-            "hostedby" => result.first["hostedby"],
             "starttime" => result.first["starttime"],
             "endtime" => result.first["endtime"]
         }
@@ -65,20 +63,19 @@ class Event
     def self.create(opts)
         result = DB.exec(
             <<-SQL
-                INSERT INTO events (name, type, image, date, month, location, hostedby, starttime, endtime) 
-                VALUES ('#{opts["name"]}', '#{opts["type"]}','#{opts["image"]}', #{opts["date"]}, '#{opts["month"]}', '#{opts["location"]}', '#{opts["hostedby"]}', '#{opts["starttime"]}', '#{opts["endtime"]}' )
-                RETURNING id, name, type, image, date, month, location, hostedby, starttime, endtime
+                INSERT INTO events (eventname, type, image, date, month, location, starttime, endtime)
+                VALUES ('#{opts["eventname"]}', '#{opts["type"]}','#{opts["image"]}', #{opts["date"]}, '#{opts["month"]}', '#{opts["location"]}', '#{opts["starttime"]}', '#{opts["endtime"]}' )
+                RETURNING id, eventname, type, image, date, month, location, starttime, endtime
             SQL
         )
         {
             "id" => result.first["id"].to_i,
-            "name" => result.first["name"],
+            "eventname" => result.first["eventname"],
             "type" => result.first["type"],
             "image" => result.first["image"],
             "date" => result.first["date"].to_i,
             "month" => result.first["month"],
             "location" => result.first["location"],
-            "hostedby" => result.first["hostedby"],
             "starttime" => result.first["starttime"],
             "endtime" => result.first["endtime"]
         }
@@ -95,20 +92,19 @@ class Event
         result = DB.exec(
             <<-SQL
                 UPDATE events
-                SET name='#{opts["name"]}', type='#{opts["type"]}', image='#{opts["image"]}', date=#{opts["date"]}, month='#{opts["month"]}', location='#{opts["location"]}', hostedby='#{opts["hostedby"]}', starttime='#{opts["starttime"]}', endtime='#{opts["endtime"]}'
+                SET name='#{opts["eventname"]}', type='#{opts["type"]}', image='#{opts["image"]}', date=#{opts["date"]}, month='#{opts["month"]}', location='#{opts["location"]}', starttime='#{opts["starttime"]}', endtime='#{opts["endtime"]}'
                 WHERE id=#{id}
-                RETURNING id, name, type, image, date, month, location, hostedby, starttime, endtime
+                RETURNING id, eventname, type, image, date, month, location, starttime, endtime
             SQL
         )
         {
             "id" => result.first["id"].to_i,
-            "name" => result.first["name"],
+            "eventname" => result.first["eventname"],
             "type" => result.first["type"],
             "image" => result.first["image"],
             "date" => result.first["date"].to_i,
             "month" => result.first["month"],
             "location" => result.first["location"],
-            "hostedby" => result.first["hostedby"],
             "starttime" => result.first["starttime"],
             "endtime" => result.first["endtime"]
         }
