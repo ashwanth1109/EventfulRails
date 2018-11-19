@@ -18,6 +18,7 @@ class CategoryPage extends Component {
             <div>
                 <Header
                     userId={this.props.getUserId()}
+                    updateUser={userId => this.props.updateUser(userId)}
                     history={this.props.history}
                 />
                 <Spacer h={150} />

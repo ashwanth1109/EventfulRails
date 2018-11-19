@@ -50,6 +50,9 @@ class App extends Component {
                                 <CategoryPage
                                     {...props}
                                     getUserId={() => this.getUserId()}
+                                    updateUser={userId =>
+                                        this.updateUser(userId)
+                                    }
                                 />
                             )}
                         />
