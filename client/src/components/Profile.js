@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Spacer from "./Spacer";
 import EventChip from "./EventChip";
+import ImageForm from "./ImageForm";
 
 export default class Profile extends Component {
     constructor(props) {
@@ -9,7 +10,8 @@ export default class Profile extends Component {
             editName: false,
             editProfession: false,
             name: "",
-            profession: ""
+            profession: "",
+            imageForm: false
         };
     }
 
@@ -90,81 +92,96 @@ export default class Profile extends Component {
     };
 
     render() {
-        const { name, profession } = this.state;
-        const { editName, editProfession } = this.state;
+        const {
+            name,
+            profession,
+            editName,
+            editProfession,
+            imageForm
+        } = this.state;
         console.log(
             `Editname: ${editName} & EditProfession: ${editProfession}`
         );
         return (
-            <div className="flex1 flex column">
-                <div className="flex3 flex row aCenter jAround">
-                    <Spacer w={40} />
-                    <div className="width200 height200 bRad100 white" />
-                    <div className="width600 fullH flex column jCenter">
-                        {!editName ? (
-                            <div
-                                className="fSize4 fQuicksand fWhite cPointer"
-                                onClick={() =>
-                                    this.setState({ editName: !editName })
-                                }
-                            >
-                                {name ? name : "Enter name here"}
-                            </div>
-                        ) : (
-                            <input
-                                type="text"
-                                className="fSize4 fQuicksand pink fWhite cPointer"
-                                ref="name"
-                                onClick={() => this.updateName()}
-                                autoFocus
-                                defaultValue={name}
-                            />
-                        )}
-                        {!editProfession ? (
-                            <div
-                                className="fSize2 fQuicksand fWhite cPointer"
-                                onClick={() =>
-                                    this.setState({
-                                        editProfession: !editProfession
-                                    })
-                                }
-                            >
-                                {profession
-                                    ? profession
-                                    : "Enter profession here"}
-                            </div>
-                        ) : (
-                            <input
-                                type="text"
-                                className="fSize2 fQuicksand pink fWhite cPointer"
-                                ref="profession"
-                                onClick={() => this.updateProfession()}
-                                autoFocus
-                                defaultValue={profession}
-                            />
-                        )}
-                    </div>
-                    <Spacer w={40} />
-                </div>
-                <div className="flex2 flex column">
-                    <div className="fQuicksand fSize2 fWhite tAlignCenter">
-                        UPCOMING EVENTS FOR YOU:
-                    </div>
-                    <Spacer h={20} />
-                    <div className="flex row aCenter jAround">
+            <div className="flex1 flex relative">
+                {imageForm ? <ImageForm toggleImageForm={()=>this.setState({imageForm: !imageForm})}/> : null}
+                <div className="flex1 flex column">
+                    <div className="flex3 flex row aCenter jAround">
                         <Spacer w={40} />
-                        <div className="flex row jAround">
-                            <EventChip name="REACT" date="19 NOV" />
-                            <Spacer w={20} />
-                            <EventChip name="UI/UX" date="23 NOV" />
-                            <Spacer w={20} />
-                            <EventChip />
-                            <Spacer w={20} />
-                            <EventChip />
-                            <Spacer w={20} />
-                            <EventChip />
+                        <div
+                            className="width200 height200 bRad100 white flex center fSize15 fQuicksand fPink cPointer"
+                            onClick={() =>
+                                this.setState({ imageForm: !imageForm })
+                            }
+                        >
+                            Click here
+                        </div>
+                        <div className="width600 fullH flex column jCenter">
+                            {!editName ? (
+                                <div
+                                    className="fSize4 fQuicksand fWhite cPointer"
+                                    onClick={() =>
+                                        this.setState({ editName: !editName })
+                                    }
+                                >
+                                    {name ? name : "Enter name here"}
+                                </div>
+                            ) : (
+                                <input
+                                    type="text"
+                                    className="fSize4 fQuicksand pink fWhite cPointer"
+                                    ref="name"
+                                    onClick={() => this.updateName()}
+                                    autoFocus
+                                    defaultValue={name}
+                                />
+                            )}
+                            {!editProfession ? (
+                                <div
+                                    className="fSize2 fQuicksand fWhite cPointer"
+                                    onClick={() =>
+                                        this.setState({
+                                            editProfession: !editProfession
+                                        })
+                                    }
+                                >
+                                    {profession
+                                        ? profession
+                                        : "Enter profession here"}
+                                </div>
+                            ) : (
+                                <input
+                                    type="text"
+                                    className="fSize2 fQuicksand pink fWhite cPointer"
+                                    ref="profession"
+                                    onClick={() => this.updateProfession()}
+                                    autoFocus
+                                    defaultValue={profession}
+                                />
+                            )}
                         </div>
                         <Spacer w={40} />
+                    </div>
+                    <div className="flex2 flex column">
+                        <div className="fQuicksand fSize2 fWhite tAlignCenter">
+                            UPCOMING EVENTS FOR YOU:
+                        </div>
+                        <Spacer h={20} />
+                        <div className="flex row aCenter jAround">
+                            <Spacer w={40} />
+                            <div className="flex row jAround">
+                                <EventChip name="REACT" date="19 NOV" />
+                                <Spacer w={20} />
+                                <EventChip name="UI/UX" date="23 NOV" />
+                                <Spacer w={20} />
+                                <EventChip />
+                                <Spacer w={20} />
+                                <EventChip />
+                                <Spacer w={20} />
+                                <EventChip />
+                            </div>
+                            <Spacer w={40} />
+                        </div>
                     </div>
                 </div>
             </div>
