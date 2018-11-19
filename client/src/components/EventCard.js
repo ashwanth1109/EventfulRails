@@ -22,9 +22,17 @@ class EventCard extends Component {
               <h3 className="width200">
                 COMPUTER HARDWARE
               </h3>
-              <img src={location} style={{width: 30}}/>
+              <img src={location} style={{width: 30}}/> Atlanta, Georgia
               <Spacer h={15}/>
-              <img src={clock} style={{width: 30}}/>
+              <img src={clock} style={{width: 30}}/> 07:30 PM - 10:30 PM
+              <Spacer h={10}/>
+              <div className="bRad100 white flex" style={{width: 50, height: 50}}>
+              <span className="abs flex center">
+              <Spacer w={55}/>
+                  Hosted By:<br/>
+                  Emily Reno
+              </span>
+              </div>
           </div>
       </div>
     )

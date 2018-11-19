@@ -39,7 +39,7 @@ class User
 
             <<-SQL
                 SELECT
-                    users.name,
+                    users.*,
                     attendees.ishost,
                     events.id,
                     events.name
