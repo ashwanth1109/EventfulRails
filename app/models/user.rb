@@ -30,13 +30,14 @@ class User
 
     def self.all
         results = DB.exec(
+            # <<-SQL
+            #     SELECT
+            #         *
+            #     FROM users
+            # SQL
+
             <<-SQL
-                SELECT
-                    users.*,
-                    hosting.eventid
-                FROM users
-                LEFT JOIN hosting
-                ON users.id
+                SELECT * FROM users;
             SQL
         )
         results.map do |result|
@@ -91,9 +92,9 @@ class User
         result = DB.exec(
             <<-SQL
                 UPDATE users
-                SET username='#{opts["username"]}', password='#{opts["password"]}', name='#{opts["name"]}', profession='#{opts["profession"]}', imageurl='#{opts["imageurl"]}', savedevents=#{opts["savedevents"]}, hostingevents=#{opts["hostingevents"]}
+                SET username='#{opts["username"]}', password='#{opts["password"]}', name='#{opts["name"]}', profession='#{opts["profession"]}', imageurl='#{opts["imageurl"]}'
                 WHERE id=#{id}
-                RETURNING id, username, password, name, profession, imageurl, savedevents, hostingevents
+                RETURNING id, username, password, name, profession, imageurl
             SQL
         )
         {

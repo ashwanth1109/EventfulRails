@@ -4,16 +4,14 @@ import logo from "../assets/eventfulLogo.png";
 import Spacer from "../components/Spacer";
 
 import { Route } from "react-router-dom";
-import TextInput from "../components/TextInput";
+// import TextInput from "../components/TextInput";
 
-const LoginButton = () => (
+const LoginButton = props => (
     <Route
         render={({ history }) => (
             <div
                 className="flex1 pink bRad10 flex center cPointer"
-                onClick={() => {
-                    history.push("/category");
-                }}
+                onClick={() => props.onClick(history)}
             >
                 <p className="fSize15 fQuicksand fWhite">LOGIN</p>
             </div>
@@ -21,14 +19,12 @@ const LoginButton = () => (
     />
 );
 
-const SignUpButton = () => (
+const SignUpButton = props => (
     <Route
         render={({ history }) => (
             <div
                 className="flex1 pink bRad10 flex center cPointer"
-                onClick={() => {
-                    console.log("user should sign up");
-                }}
+                onClick={() => props.onClick()}
             >
                 <p className="fSize15 fQuicksand fWhite">SIGN UP</p>
             </div>
@@ -68,11 +64,83 @@ export default class LandingPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            login: true
+            login: true,
+            users: []
         };
     }
+
+    getUsers = () => {
+        fetch("/users").then(res => {
+            res.json().then(data => {
+                this.setState({
+                    users: data
+                });
+            });
+        });
+    };
+
+    componentDidMount() {
+        this.getUsers();
+    }
+
+    login = history => {
+        const { users } = this.state;
+        const { username, password } = this.refs;
+        let userFound = false,
+            passwordMismatch = false;
+        users.forEach(user => {
+            if (user.username === username.value) {
+                console.log(`user found in database`);
+                if (user.password === password.value) {
+                    console.log(user.id);
+                    console.log(this.props);
+                    history.push("/category");
+                    this.props.updateUser(user.id);
+                    userFound = true;
+                } else {
+                    passwordMismatch = true;
+                }
+            }
+        });
+        if (passwordMismatch) {
+            console.log(`password entered is incorrect`);
+        } else if (!userFound) {
+            console.log(`user not found in database`);
+        }
+    };
+
+    signUp = () => {
+        const { username, password, password2 } = this.refs;
+        if (password.value === password2.value) {
+            const user = {
+                username: username.value,
+                password: password.value
+            };
+            fetch("/users", {
+                body: JSON.stringify(user),
+                method: "POST",
+                headers: {
+                    //prettier-ignore
+                    "Accept": "application/json, text/plain, */*",
+                    "Content-Type": "application/json"
+                }
+            }).then(res => {
+                res.json().then(data => {
+                    console.log(data);
+                    this.setState({
+                        login: true
+                    });
+                    this.getUsers();
+                });
+            });
+        } else {
+            console.log(`passwords dont match`);
+        }
+    };
+
     render() {
         const { login } = this.state;
+        // console.log(username, password);
         return (
             <div>
                 <img
@@ -94,24 +162,27 @@ export default class LandingPage extends Component {
                             EVENT BOOKING MADE EASY
                         </h1>
                         <Spacer h={50} />
-                        <TextInput
-                            type="email"
-                            styleClass="width500"
+                        <input
+                            className="width500 bRad10 height60 pad10 borderBox fSize15 fQuicksand fPink fWeight500 focusPink"
+                            type="text"
                             placeholder="Username"
+                            ref="username"
                         />
                         <Spacer h={20} />
-                        <TextInput
+                        <input
+                            className="width500 bRad10 height60 pad10 borderBox fSize15 fQuicksand fPink fWeight500 focusPink"
                             type="password"
-                            styleClass="width500"
                             placeholder="Password"
+                            ref="password"
                         />
                         <Spacer h={20} />
                         {!login ? (
                             <div>
-                                <TextInput
+                                <input
+                                    className="width500 bRad10 height60 pad10 borderBox fSize15 fQuicksand fPink fWeight500 focusPink"
                                     type="password"
-                                    styleClass="width500"
                                     placeholder="Re-enter Password"
+                                    ref="password2"
                                 />
                                 <Spacer h={30} />
                             </div>
@@ -132,7 +203,13 @@ export default class LandingPage extends Component {
                                 </p>
                             </div>
                             <Spacer w={10} />
-                            {login ? <LoginButton /> : <SignUpButton />}
+                            {login ? (
+                                <LoginButton
+                                    onClick={history => this.login(history)}
+                                />
+                            ) : (
+                                <SignUpButton onClick={() => this.signUp()} />
+                            )}
                             <Spacer w={30} />
                         </div>
                         <SwitchText

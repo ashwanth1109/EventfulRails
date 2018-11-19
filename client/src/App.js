@@ -6,21 +6,56 @@ import DashboardPage from "./pages/DashboardPage";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
+// const Page1 = (props) => (
+//     <LandingPage />
+// )
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            page: 1
+            userId: 0
         };
     }
 
+    updateUser = userId => {
+        console.log(`Entering update user`);
+        this.setState({
+            userId: userId
+        });
+    };
+
+    getUserId = () => this.state.userId;
+
     render() {
+        console.log(`App is being rendered`);
         return (
             <div className="white">
                 <Router>
                     <div>
-                        <Route exact path="/" component={LandingPage} />
-                        <Route path="/category" component={CategoryPage} />
+                        <Route
+                            exact
+                            path="/"
+                            render={props => (
+                                <LandingPage
+                                    {...props}
+                                    updateUser={userId =>
+                                        this.updateUser(userId)
+                                    }
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/category"
+                            render={props => (
+                                <CategoryPage
+                                    {...props}
+                                    getUserId={() => this.getUserId()}
+                                    updateUser={userId =>
+                                        this.updateUser(userId)
+                                    }
+                                />
+                            )}
+                        />
                         <Route path="/dashboard" component={DashboardPage} />
                     </div>
                 </Router>

@@ -245,6 +245,9 @@
 .fixed {
     position: fixed;
 }
+.relative {
+    position: relative;
+}
 .oHidden {
     overflow: hidden;
 }
@@ -276,6 +279,9 @@
     border-radius: 100%;
 }
 .bPink {
+    border: 2px solid #ff3697;
+}
+.bPinkFocus:focus {
     border: 2px solid #ff3697;
 }
 

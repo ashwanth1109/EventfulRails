@@ -7,9 +7,44 @@ export default class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            expanded: false
+            expanded: false,
+            user: null
         };
     }
+
+    componentDidMount() {
+        const { userId, history } = this.props;
+        fetch(`/users/${userId}`).then(res => {
+            if (res.status === 200) {
+                res.json().then(data => {
+                    this.setState({
+                        user: data
+                    });
+                });
+            } else {
+                console.log(`User not retrieved from db`);
+                history.push("/");
+            }
+        });
+    }
+
+    logOut = () => {
+        const { history } = this.props;
+        this.props.updateUser(0);
+        console.log(history);
+        history.push("/");
+    };
+
+    deleteAccount = () => {
+        const { user } = this.state;
+        fetch(`/users/${user.id}`, {
+            method: "DELETE"
+        }).then(data => {
+            console.log(data);
+            this.logOut();
+        });
+    };
+
     render() {
         const { expanded } = this.state;
         let darkenColor = "";
@@ -29,7 +64,12 @@ export default class Header extends Component {
             headerClass =
                 "fixed bg fullW height600 transition1 flex column zIndex3 oHidden";
         }
-        let name = "Ashwanth";
+        const { user } = this.state;
+        console.log(user);
+        let username = "";
+        if (user) {
+            username = user.username;
+        }
         return (
             <div>
                 <div
@@ -37,10 +77,20 @@ export default class Header extends Component {
                     style={{ backgroundColor: darkenColor }}
                 />
                 <div className={headerClass} style={{ top: topOfHeader }}>
-                    <Profile />
+                    <Profile user={user} />
                     <div className="flex row">
+                        <Spacer w={40} />
+                        <div
+                            className="fSize2 fWhite fQuicksand underline cPointer"
+                            onClick={() => this.deleteAccount()}
+                        >
+                            Delete Account
+                        </div>
                         <div className="flex1" />
-                        <div className="fSize2 fWhite fQuicksand underline cPointer">
+                        <div
+                            className="fSize2 fWhite fQuicksand underline cPointer"
+                            onClick={() => this.logOut()}
+                        >
                             Logout
                         </div>
                         <Spacer w={40} />
@@ -54,7 +104,7 @@ export default class Header extends Component {
                         <img src={logo} alt="logo" className="height60" />
                         <div className="flex1" />
                         <div className="fWhite fQuicksand fSize15 fWeight500">
-                            {name.toUpperCase()}
+                            {username}
                         </div>
                         <Spacer w={10} />
                         <img
