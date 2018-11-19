@@ -15,13 +15,12 @@ create table users(
 
 create table events(
 	id serial primary key,
-	name varchar(50) not null,
+	eventname varchar(50) not null,
 	type varchar(10),
 	image varchar(200),
 	date integer,
     month varchar(3),
     location varchar(50),
-    hostedby varchar(20),
     starttime varchar(5),
     endtime varchar(5)
 );
@@ -36,5 +35,5 @@ create table attendees(
     id serial primary key,
     userid integer references users,
     eventid integer references events,
-		ishost boolean not null default false
+	ishost boolean not null default false
 );

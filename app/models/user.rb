@@ -34,38 +34,20 @@ class User
             #     SELECT
             #         *
             #     FROM users
-            #
             # SQL
 
             <<-SQL
-                SELECT
-                    users.*,
-                    attendees.ishost,
-                    events.id,
-                    events.name
-                FROM users
-                LEFT JOIN attendees
-                ON users.id = attendees.userid
-                LEFT JOIN events
-                ON events.id = attendees.eventid
-
+                SELECT * FROM users;
             SQL
         )
         results.map do |result|
-            if result["event_id"]
-              event = {
-                "id" => result["event_id"].to_i,
-                "event" => result["event"]
-              }
-            end
             {
                 "id" => result["id"].to_i,
                 "username" => result["username"],
                 "password" => result["password"],
                 "name" => result["name"],
                 "profession" => result["profession"],
-                "imageurl" => result["imageurl"],
-                "event_id" => result["event_id"].to_i
+                "imageurl" => result["imageurl"]
             }
         end
     end

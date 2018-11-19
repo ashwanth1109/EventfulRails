@@ -6,20 +6,42 @@ import DashboardPage from "./pages/DashboardPage";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
+// const Page1 = (props) => (
+//     <LandingPage />
+// )
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            page: 1
+            userId: 0
         };
     }
 
+    updateUser = userId => {
+        console.log(`Entering update user`);
+        this.setState({
+            userId: userId
+        });
+    };
+
     render() {
+        console.log(`App is being rendered`);
         return (
             <div className="white">
                 <Router>
                     <div>
-                        <Route exact path="/" component={LandingPage} />
+                        <Route
+                            exact
+                            path="/"
+                            render={props => (
+                                <LandingPage
+                                    {...props}
+                                    updateUser={userId =>
+                                        this.updateUser(userId)
+                                    }
+                                />
+                            )}
+                        />
                         <Route path="/category" component={CategoryPage} />
                         <Route path="/dashboard" component={DashboardPage} />
                     </div>

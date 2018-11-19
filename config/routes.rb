@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   post '/events', to: 'events#create'
   delete '/events/:id', to: 'events#delete'
   put '/events/:id', to: 'events#update'
+
+  # ATTENDEE ROUTES
 end

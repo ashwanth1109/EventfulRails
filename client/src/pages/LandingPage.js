@@ -4,16 +4,14 @@ import logo from "../assets/eventfulLogo.png";
 import Spacer from "../components/Spacer";
 
 import { Route } from "react-router-dom";
-import TextInput from "../components/TextInput";
+// import TextInput from "../components/TextInput";
 
-const LoginButton = () => (
+const LoginButton = props => (
     <Route
         render={({ history }) => (
             <div
                 className="flex1 pink bRad10 flex center cPointer"
-                onClick={() => {
-                    history.push("/category");
-                }}
+                onClick={() => props.onClick(history)}
             >
                 <p className="fSize15 fQuicksand fWhite">LOGIN</p>
             </div>
@@ -21,7 +19,7 @@ const LoginButton = () => (
     />
 );
 
-const SignUpButton = () => (
+const SignUpButton = props => (
     <Route
         render={({ history }) => (
             <div
@@ -68,11 +66,54 @@ export default class LandingPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            login: true
+            login: true,
+            users: []
         };
     }
+
+    componentDidMount() {
+        fetch("/users").then(res => {
+            res.json().then(data => {
+                this.setState({
+                    users: data
+                });
+            });
+        });
+    }
+
+    login = history => {
+        // this.setState({
+        //     username: this.refs.username.value,
+        //     password: this.refs.password.value
+        // });
+        const { users } = this.state;
+        const { username, password } = this.refs;
+        let userFound = false,
+            passwordMismatch = false;
+        users.forEach(user => {
+            if (user.username === username.value) {
+                console.log(`user found in database`);
+                if (user.password === password.value) {
+                    console.log(user.id);
+                    console.log(this.props);
+                    history.push("/category");
+                    this.props.updateUser(user.id);
+                    userFound = true;
+                } else {
+                    passwordMismatch = true;
+                }
+            }
+        });
+        if (passwordMismatch) {
+            console.log(`passwords don't match`);
+        } else if (!userFound) {
+            console.log(`user not found in database`);
+        }
+    };
+
     render() {
         const { login } = this.state;
+        // console.log(username, password);
         return (
             <div>
                 <img
@@ -94,24 +135,27 @@ export default class LandingPage extends Component {
                             EVENT BOOKING MADE EASY
                         </h1>
                         <Spacer h={50} />
-                        <TextInput
-                            type="email"
-                            styleClass="width500"
+                        <input
+                            className="width500 bRad10 height60 pad10 borderBox fSize15 fQuicksand fPink fWeight500 focusPink"
+                            type="text"
                             placeholder="Username"
+                            ref="username"
                         />
                         <Spacer h={20} />
-                        <TextInput
+                        <input
+                            className="width500 bRad10 height60 pad10 borderBox fSize15 fQuicksand fPink fWeight500 focusPink"
                             type="password"
-                            styleClass="width500"
                             placeholder="Password"
+                            ref="password"
                         />
                         <Spacer h={20} />
                         {!login ? (
                             <div>
-                                <TextInput
+                                <input
+                                    className="width500 bRad10 height60 pad10 borderBox fSize15 fQuicksand fPink fWeight500 focusPink"
                                     type="password"
-                                    styleClass="width500"
                                     placeholder="Re-enter Password"
+                                    ref="password2"
                                 />
                                 <Spacer h={30} />
                             </div>
@@ -132,7 +176,13 @@ export default class LandingPage extends Component {
                                 </p>
                             </div>
                             <Spacer w={10} />
-                            {login ? <LoginButton /> : <SignUpButton />}
+                            {login ? (
+                                <LoginButton
+                                    onClick={history => this.login(history)}
+                                />
+                            ) : (
+                                <SignUpButton />
+                            )}
                             <Spacer w={30} />
                         </div>
                         <SwitchText
