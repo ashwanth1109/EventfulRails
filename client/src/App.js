@@ -56,7 +56,10 @@ class App extends Component {
                                 />
                             )}
                         />
-                        <Route path="/dashboard" component={DashboardPage} />
+                        <Route
+                            path="/dashboard"
+                            render={props => <DashboardPage {...props} />}
+                        />
                     </div>
                 </Router>
             </div>

@@ -5,16 +5,16 @@
 
 /*======= DATE =======*/
 .date {
-  background-color: #fff;
-  top: 5px;
-  left: 5px;
-  width: 50px;
-  height: 50px;
-  font-size: .5em;
-  color: #000;
-  text-align: center;
-  line-height: 15px;
-  padding: .3em;
+    background-color: #fff;
+    top: 5px;
+    left: 5px;
+    width: 50px;
+    height: 50px;
+    font-size: 0.5em;
+    color: #000;
+    text-align: center;
+    line-height: 15px;
+    padding: 0.3em;
 }
 
 /*======= BORDERS =======*/
@@ -23,6 +23,22 @@
 }
 
 .bRadTop10 {
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+/*====== ARROWS ======*/
+.arrowLeft {
+    width: 0;
+    height: 0;
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-right: 30px solid #08a7d0;
+}
+.arrowRight {
+    width: 0;
+    height: 0;
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 30px solid #08a7d0;
 }
