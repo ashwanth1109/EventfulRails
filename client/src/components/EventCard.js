@@ -1,11 +1,20 @@
 import React, { Component } from "react";
 import gameEvent from "../assets/compHardwareEvent.png";
 import clock from "../assets/clock.png";
-import location from "../assets/location.png";
+import locationIcon from "../assets/location.png";
 import Spacer from "../components/Spacer";
 
 class EventCard extends Component {
     render() {
+        const {
+            eventName,
+            date,
+            month,
+            location,
+            startTime,
+            endTime,
+            hostedBy
+        } = this.props;
         return (
             <div className="black flex jCenter width300 height350 bRad10 borderBottom column">
                 <div style={{ height: 175 }} className="fullW relative">
@@ -17,19 +26,21 @@ class EventCard extends Component {
                     <div className="abs fullW fullH flex column jEnd">
                         <div className="fQuicksand fWeight700 fSize12 fWhite flex row">
                             <Spacer w={10} />
-                            COMPUTER HARDWARE
+                            {eventName}
                             <Spacer w={10} />
                         </div>
                     </div>
                     <div className="date bRad10 fQuicksand abs">
-                        <h1>20 NOV</h1>
+                        <h1>
+                            {date} {month}
+                        </h1>
                     </div>
                 </div>
                 <div className="flex1 flex row">
                     <div className="width80 fullH flex column">
                         <div className="flex1 flex center">
                             <img
-                                src={location}
+                                src={locationIcon}
                                 style={{ width: 30 }}
                                 alt="location"
                             />
@@ -48,18 +59,18 @@ class EventCard extends Component {
                     <div className="flex1 flex column">
                         <div className="flex1 flex column jCenter">
                             <div className="fQuicksand fSize1 fWeight500 fWhite">
-                                Atlanta, Georgia
+                                {location}
                             </div>
                         </div>
                         <div className="flex1 flex column jCenter">
                             <div className="fQuicksand fSize1 fWeight500 fWhite">
-                                07:00 PM - 10:00 PM
+                                {startTime} - {endTime}
                             </div>
                         </div>
                         <div className="flex1 flex column jCenter">
                             <div className="fQuicksand fSize1 fWeight500 fWhite flex column">
                                 <div className="fSize12">HOSTED BY:</div>
-                                <div>Emily Reno</div>
+                                <div>{hostedBy}</div>
                             </div>
                         </div>
                     </div>

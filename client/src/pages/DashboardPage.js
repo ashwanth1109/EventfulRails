@@ -3,6 +3,7 @@ import Spacer from "../components/Spacer";
 import Sidebar from "../components/Sidebar";
 import Slideshow from "../components/Slideshow";
 import EventCard from "../components/EventCard";
+import gameEvent from "../assets/compHardwareEvent.png";
 import "../dashboard.css";
 
 export default class DashboardPage extends Component {
@@ -23,9 +24,36 @@ export default class DashboardPage extends Component {
                             <div className="flex center">
                                 <div className="arrowLeft" />
                             </div>
-                            <EventCard />
-                            <EventCard />
-                            <EventCard />
+                            <EventCard
+                                eventName="Computer Hardware"
+                                date="20"
+                                month="NOV"
+                                location="Atlanta, Georgia"
+                                startTime="07:00 PM"
+                                endTime="10:00 PM"
+                                hostedBy="EMILY RENO"
+                                eventImage={gameEvent}
+                            />
+                            <EventCard
+                                eventName="Switch It Up"
+                                date="21"
+                                month="NOV"
+                                location="Bangalore, India"
+                                startTime="07:00 PM"
+                                endTime="10:00 PM"
+                                hostedBy="ASHWANTH A R"
+                                eventImage={gameEvent}
+                            />
+                            <EventCard
+                                eventName="React, The Reaction"
+                                date="22"
+                                month="NOV"
+                                location="Chennai, India"
+                                startTime="07:00 PM"
+                                endTime="10:00 PM"
+                                hostedBy="ASHWANTH A R"
+                                eventImage={gameEvent}
+                            />
                             <div className="flex center">
                                 <div className="arrowRight" />
                             </div>
