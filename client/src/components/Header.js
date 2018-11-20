@@ -13,10 +13,15 @@ export default class Header extends Component {
     }
 
     componentDidMount() {
+        this.getUser();
+    }
+
+    getUser = () => {
         const { userId, history } = this.props;
         fetch(`/users/${userId}`).then(res => {
             if (res.status === 200) {
                 res.json().then(data => {
+                    console.log(`Data fetched for user from db`);
                     this.setState({
                         user: data
                     });
@@ -26,7 +31,7 @@ export default class Header extends Component {
                 history.push("/");
             }
         });
-    }
+    };
 
     logOut = () => {
         const { history } = this.props;
@@ -77,7 +82,7 @@ export default class Header extends Component {
                     style={{ backgroundColor: darkenColor }}
                 />
                 <div className={headerClass} style={{ top: topOfHeader }}>
-                    <Profile user={user} />
+                    <Profile user={user} getUser={() => this.getUser()} />
                     <div className="flex row">
                         <Spacer w={40} />
                         <div

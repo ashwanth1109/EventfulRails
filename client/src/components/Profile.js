@@ -16,16 +16,18 @@ export default class Profile extends Component {
         };
     }
 
-    componentWillReceiveProps() {
+    componentDidUpdate(prevProps) {
         const { user } = this.props;
         console.log(user);
-        if (user) {
-            const { name, profession, imageurl } = user;
-            this.setState({
-                name: name,
-                profession: profession,
-                imageurl: imageurl
-            });
+        if (user !== prevProps.user) {
+            if (user) {
+                const { name, profession, imageurl } = user;
+                this.setState({
+                    name: name,
+                    profession: profession,
+                    imageurl: imageurl
+                });
+            }
         }
     }
 
@@ -117,6 +119,7 @@ export default class Profile extends Component {
         })
             .then(res => {
                 console.log(res);
+                this.props.getUser();
                 this.setState({
                     imageurl: imageRef,
                     imageForm: !imageForm
