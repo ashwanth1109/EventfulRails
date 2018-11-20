@@ -4,6 +4,8 @@ import Sidebar from "../components/Sidebar";
 import Slideshow from "../components/Slideshow";
 import EventCard from "../components/EventCard";
 import gameEvent from "../assets/compHardwareEvent.png";
+import switchEvent from "../assets/switchUpEvent.png";
+import reactEvent from "../assets/reactEvent.png";
 import "../dashboard.css";
 
 export default class DashboardPage extends Component {
@@ -16,7 +18,9 @@ export default class DashboardPage extends Component {
                     }}
                 />
                 <div className="flex1 flex column">
-                    <Slideshow />
+                    <div className="fullW height350 relative">
+                        <Slideshow />
+                    </div>
                     <div className="flex1 flex center column jEvenly aStart">
                         <div className="flex row">
                             <Spacer w={80} />
@@ -46,7 +50,7 @@ export default class DashboardPage extends Component {
                                 startTime="07:00 PM"
                                 endTime="10:00 PM"
                                 hostedBy="EMILY RENO"
-                                eventImage={gameEvent}
+                                eventImage={switchEvent}
                             />
                             <EventCard
                                 eventName="React, The Reaction"
@@ -56,7 +60,7 @@ export default class DashboardPage extends Component {
                                 startTime="07:00 PM"
                                 endTime="10:00 PM"
                                 hostedBy="ASHWANTH A R"
-                                eventImage={gameEvent}
+                                eventImage={reactEvent}
                             />
                             <div className="flex center">
                                 <div className="arrowRight" />

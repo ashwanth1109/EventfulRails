@@ -8,7 +8,7 @@ class Sidebar extends Component {
     render() {
         return (
             <div
-                className="black fullH width300 fQuicksand fWhite flex center"
+                className="black fullH width300 fQuicksand fWhite flex center zIndex3"
                 style={{ backgroundImage: `url(${sidebarBg})` }}
             >
                 <div

@@ -199,6 +199,12 @@
 .white {
     background-color: #fff;
 }
+.gray1 {
+    background-color: slategray;
+}
+.gray2 {
+    background-color: #333;
+}
 
 /*====== BACKGROUND COLOR OPACITY ======*/
 .blackO40 {
@@ -271,6 +277,9 @@
 }
 
 /*====== Z INDEX ======*/
+.zIndex1 {
+    z-index: 1;
+}
 .zIndex2 {
     z-index: 2;
 }
