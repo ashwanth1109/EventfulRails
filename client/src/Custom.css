@@ -21,6 +21,12 @@
 }
 
 /*====== WIDTH: SPECIFIC ======*/
+.width10 {
+    width: 10px;
+}
+.width20 {
+    width: 20px;
+}
 .width50 {
     width: 50px;
 }
@@ -199,6 +205,9 @@
 .white {
     background-color: #fff;
 }
+.whiteO50 {
+    background-color: #ffffff40;
+}
 .gray1 {
     background-color: slategray;
 }
@@ -296,6 +305,9 @@
 }
 
 /*====== BORDER ======*/
+.bRad5 {
+    border-radius: 5px;
+}
 .bRad10 {
     border-radius: 10px;
 }

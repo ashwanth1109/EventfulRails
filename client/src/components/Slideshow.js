@@ -1,27 +1,80 @@
 import React, { Component } from "react";
-// import Spacer from "../components/Spacer";
+import Spacer from "../components/Spacer";
+
+import slide1 from "../assets/slide1.png";
+import slide2 from "../assets/slide2.png";
+import slide3 from "../assets/slide3.png";
+import slide4 from "../assets/slide4.png";
 
 class Slide extends Component {
     render() {
         const {
             slidePosition,
-            slideNumber,
-            slideColor,
-            slideZValue
+            slideTitle,
+            slideImage,
+            slideZValue,
+            slideIndex
         } = this.props;
+        let dotTransparency = ["whiteO50", "whiteO50", "whiteO50", "whiteO50"];
+        dotTransparency[slideIndex] = "white";
         return (
-            <div
-                className={`abs ${slideColor} fullW fullH ${slideZValue} fQuicksand fWhite flex center transition1 fSize2`}
-                style={{ left: slidePosition }}
-            >
-                SLIDE {slideNumber}
+            <div>
+                <div
+                    className={`abs fullW fullH ${slideZValue} fQuicksand fWhite flex center transition1 fSize2`}
+                    style={{ left: slidePosition }}
+                >
+                    <img
+                        src={slideImage}
+                        alt={`Slide ${slideTitle}`}
+                        className="fullH fullW imgCover"
+                    />
+                    <div className="abs fullH fullW flex column jEnd aCenter">
+                        <div className="blackO70 fullW flex center">
+                            {slideTitle}
+                        </div>
+                        <Spacer h={40} />
+                    </div>
+                </div>
+                <div className="abs fullH fullW flex column jEnd aCenter zIndex3">
+                    <div className="fullW flex row center">
+                        <div
+                            className={`width10 height10 bRad5 transition1 ${
+                                dotTransparency[1]
+                            }`}
+                        />
+                        <Spacer w={10} />
+                        <div
+                            className={`width10 height10 bRad5 transition1 ${
+                                dotTransparency[2]
+                            }`}
+                        />
+                        <Spacer w={10} />
+                        <div
+                            className={`width10 height10 bRad5 transition1 ${
+                                dotTransparency[3]
+                            }`}
+                        />
+                        <Spacer w={10} />
+                        <div
+                            className={`width10 height10 bRad5 transition1 ${
+                                dotTransparency[0]
+                            }`}
+                        />
+                    </div>
+                    <Spacer h={15} />
+                </div>
             </div>
         );
     }
 }
 
-const slides = [1, 2, 3, 4];
-const slideColors = ["gray1", "gray2", "gray1", "gray2"];
+const slides = [
+    "PC VS CONSOLE",
+    "PLAYSTATION",
+    "HOW TO ESPORTS",
+    "OLD GOODIES"
+];
+const slideImages = [slide1, slide2, slide3, slide4];
 
 class Slideshow extends Component {
     constructor(props) {
@@ -29,14 +82,14 @@ class Slideshow extends Component {
         this.state = {
             prevSlide: {
                 position: "0px",
-                color: "",
-                number: 1,
+                image: "",
+                title: "",
                 zIndex: "zIndex1"
             },
             nextSlide: {
                 position: "calc(100vw - 300px)",
-                color: "",
-                number: 2,
+                image: "",
+                title: "",
                 zIndex: "zIndex2"
             },
             currentSlideArrayIndex: 1,
@@ -48,14 +101,14 @@ class Slideshow extends Component {
         this.setState({
             prevSlide: {
                 position: "0px",
-                color: "gray1",
-                number: 1,
+                image: slideImages[0],
+                title: slides[0],
                 zIndex: "zIndex1"
             },
             nextSlide: {
                 position: "calc(100vw - 300px)",
-                color: "gray2",
-                number: 2,
+                image: slideImages[1],
+                title: slides[1],
                 zIndex: "zIndex2"
             }
         });
@@ -69,27 +122,6 @@ class Slideshow extends Component {
     }
 
     transitionSlides = () => {
-        setTimeout(() => {
-            this.setState({
-                prevSlide: {
-                    position: "calc(-100vw + 300px)",
-                    color: this.state.prevSlide.color,
-                    number: this.state.prevSlide.number,
-                    zIndex: "zIndex1"
-                },
-                nextSlide: {
-                    position: "0px",
-                    color: this.state.nextSlide.color,
-                    number: this.state.nextSlide.number,
-                    zIndex: "zIndex2"
-                }
-            });
-            this.swapSlides();
-        }, 3000);
-    };
-
-    swapSlides = () => {
-        console.log(`slides should be swapped`);
         let newSlideArrayIndex;
         if (this.state.currentSlideArrayIndex === slides.length - 1) {
             newSlideArrayIndex = 0;
@@ -97,15 +129,36 @@ class Slideshow extends Component {
             newSlideArrayIndex = this.state.currentSlideArrayIndex + 1;
         }
         setTimeout(() => {
+            this.setState({
+                prevSlide: {
+                    position: "calc(-100vw + 300px)",
+                    image: this.state.prevSlide.image,
+                    title: this.state.prevSlide.title,
+                    zIndex: "zIndex1"
+                },
+                nextSlide: {
+                    position: "0px",
+                    image: this.state.nextSlide.image,
+                    title: this.state.nextSlide.title,
+                    zIndex: "zIndex2"
+                },
+                currentSlideArrayIndex: newSlideArrayIndex
+            });
+            this.swapSlides();
+        }, 3000);
+    };
+
+    swapSlides = () => {
+        console.log(`slides should be swapped`);
+        setTimeout(() => {
             // SLIDE IS MOVING UNDERNEATH SLIDE TO SAME POSITION
             this.setState({
                 prevSlide: {
                     position: "0px",
-                    color: this.state.nextSlide.color,
-                    number: this.state.nextSlide.number,
+                    image: this.state.nextSlide.image,
+                    title: this.state.nextSlide.title,
                     zIndex: "zIndex1"
-                },
-                currentSlideArrayIndex: newSlideArrayIndex
+                }
             });
         }, 1000);
         // BRING SLIDE 1 FORWARD AND MOVE SLIDE 2 BACKWARDS
@@ -113,14 +166,14 @@ class Slideshow extends Component {
             this.setState({
                 prevSlide: {
                     position: "0px",
-                    color: this.state.prevSlide.color,
-                    number: this.state.prevSlide.number,
+                    image: this.state.prevSlide.image,
+                    title: this.state.prevSlide.title,
                     zIndex: "zIndex2"
                 },
                 nextSlide: {
                     position: "0px",
-                    color: this.state.nextSlide.color,
-                    number: this.state.nextSlide.number,
+                    image: this.state.nextSlide.image,
+                    title: this.state.nextSlide.title,
                     zIndex: "zIndex1"
                 }
             });
@@ -130,14 +183,14 @@ class Slideshow extends Component {
             this.setState({
                 prevSlide: {
                     position: "0px",
-                    color: this.state.prevSlide.color,
-                    number: this.state.prevSlide.number,
+                    image: this.state.prevSlide.image,
+                    title: this.state.prevSlide.title,
                     zIndex: "zIndex2"
                 },
                 nextSlide: {
                     position: "calc(100vw - 300px)",
-                    color: slideColors[this.state.currentSlideArrayIndex],
-                    number: slides[this.state.currentSlideArrayIndex],
+                    image: slideImages[this.state.currentSlideArrayIndex],
+                    title: slides[this.state.currentSlideArrayIndex],
                     zIndex: "zIndex1"
                 }
             });
@@ -148,20 +201,22 @@ class Slideshow extends Component {
     };
 
     render() {
-        const { prevSlide, nextSlide } = this.state;
+        const { prevSlide, nextSlide, currentSlideArrayIndex } = this.state;
         return (
             <div>
                 <Slide
                     slidePosition={prevSlide.position}
-                    slideColor={prevSlide.color}
-                    slideNumber={prevSlide.number}
+                    slideImage={prevSlide.image}
+                    slideTitle={prevSlide.title}
                     slideZValue={prevSlide.zIndex}
+                    slideIndex={currentSlideArrayIndex}
                 />
                 <Slide
                     slidePosition={nextSlide.position}
-                    slideColor={nextSlide.color}
-                    slideNumber={nextSlide.number}
+                    slideImage={nextSlide.image}
+                    slideTitle={nextSlide.title}
                     slideZValue={nextSlide.zIndex}
+                    slideIndex={currentSlideArrayIndex}
                 />
             </div>
         );
