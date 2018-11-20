@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import gameEvent from "../assets/compHardwareEvent.png";
 import clock from "../assets/clock.png";
 import locationIcon from "../assets/location.png";
 import Spacer from "../components/Spacer";
@@ -13,13 +12,14 @@ class EventCard extends Component {
             location,
             startTime,
             endTime,
-            hostedBy
+            hostedBy,
+            eventImage
         } = this.props;
         return (
             <div className="black flex jCenter width300 height350 bRad10 borderBottom column">
                 <div style={{ height: 175 }} className="fullW relative">
                     <img
-                        src={gameEvent}
+                        src={eventImage}
                         className="bRadTop10 fullW fullH abs"
                         alt="gamingEvent"
                     />
