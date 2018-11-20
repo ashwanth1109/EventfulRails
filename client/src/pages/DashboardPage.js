@@ -37,29 +37,3 @@ export default class DashboardPage extends Component {
         );
     }
 }
-
-// export default class DashboardPage extends Component {
-//     render() {
-//         return (
-//             <div style={{ background: "#fff" }}>
-//                 <Sidebar />
-//                 <Slideshow />
-//                 <Spacer h={25} />
-//                 <h1
-//                     className="abs fullW flex center fSize3 fQuicksand"
-//                     style={{ left: -200, fontStyle: "italic" }}
-//                 >
-//                     Upcoming Events
-//                 </h1>
-//                 <Spacer h={100} />
-//                 <div className="fWhite fullW flex center row">
-//                     <EventCard />
-//                     <Spacer w={10} />
-//                     <EventCard />
-//                     <Spacer w={10} />
-//                     <EventCard />
-//                 </div>
-//             </div>
-//         );
-//     }
-// }

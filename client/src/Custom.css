@@ -21,6 +21,12 @@
 }
 
 /*====== WIDTH: SPECIFIC ======*/
+.width50 {
+    width: 50px;
+}
+.width80 {
+    width: 80px;
+}
 .width100 {
     width: 100px;
 }
@@ -64,6 +70,9 @@
 }
 .height40 {
     height: 40px;
+}
+.height50 {
+    height: 50px;
 }
 .height60 {
     height: 60px;
@@ -126,6 +135,9 @@
 .fSize1 {
     font-size: 1rem;
 }
+.fSize12 {
+    font-size: 1.2rem;
+}
 .fSize15 {
     font-size: 1.5rem;
 }
@@ -149,6 +161,9 @@
 }
 .fWeight500 {
     font-weight: 500;
+}
+.fWeight700 {
+    font-weight: 700;
 }
 .fQuicksand {
     font-family: "Quicksand", sans-serif;
@@ -274,6 +289,9 @@
 /*====== BORDER ======*/
 .bRad10 {
     border-radius: 10px;
+}
+.bRad25 {
+    border-radius: 25px;
 }
 .bRad50 {
     border-radius: 50px;
