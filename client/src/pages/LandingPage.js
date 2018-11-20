@@ -65,7 +65,9 @@ export default class LandingPage extends Component {
         super(props);
         this.state = {
             login: true,
-            users: []
+            users: [],
+            error: false,
+            errorMessage: "User not found in database"
         };
     }
 
@@ -103,9 +105,9 @@ export default class LandingPage extends Component {
             }
         });
         if (passwordMismatch) {
-            console.log(`password entered is incorrect`);
+            this.showErrorMessage("Password entered is incorrect");
         } else if (!userFound) {
-            console.log(`user not found in database`);
+            this.showErrorMessage("User not found in database");
         }
     };
 
@@ -134,12 +136,24 @@ export default class LandingPage extends Component {
                 });
             });
         } else {
-            console.log(`passwords dont match`);
+            this.showErrorMessage("Passwords don't match!");
         }
     };
 
+    showErrorMessage = errorMessage => {
+        this.setState({
+            error: true,
+            errorMessage: errorMessage
+        });
+        setTimeout(() => {
+            this.setState({
+                error: false
+            });
+        }, 3000);
+    };
+
     render() {
-        const { login } = this.state;
+        const { login, error, errorMessage } = this.state;
         // console.log(username, password);
         return (
             <div>
@@ -161,7 +175,15 @@ export default class LandingPage extends Component {
                         <h1 className="fSize15 fQuicksand fWhite fWeight300">
                             EVENT BOOKING MADE EASY
                         </h1>
-                        <Spacer h={50} />
+                        <Spacer h={30} />
+                        {error ? (
+                            <div className="flex center width500 height20 fQuicksand pink fWhite">
+                                {errorMessage}
+                            </div>
+                        ) : (
+                            <div className="width500 height20" />
+                        )}
+                        <Spacer h={20} />
                         <input
                             className="width500 bRad10 height60 pad10 borderBox fSize15 fQuicksand fPink fWeight500 focusPink"
                             type="text"
