@@ -32,3 +32,6 @@ Starting out, we didn't really have an idea of what this project would be until 
 ![Design of Dashboard](/ui-ux/designs/eventfulMain.png)
 ![Design of Profile](/ui-ux/designs/eventfulUserModal.png)
 ![Design of Category Page](/ui-ux/designs/eventfulCatPage.png)
+
+## ENTITY RELATIONSHIP DIAGRAM
+![ERD](https://i.imgur.com/55bgwZi.png)
