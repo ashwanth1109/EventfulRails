@@ -10,7 +10,11 @@ export default class DashboardPage extends Component {
     render() {
         return (
             <div className="white screenW screenH flex row">
-                <Sidebar />
+                <Sidebar
+                    goBack={() => {
+                        console.log(this.props.route.history.push("/category"));
+                    }}
+                />
                 <div className="flex1 flex column">
                     <Slideshow />
                     <div className="flex1 flex center column jEvenly aStart">

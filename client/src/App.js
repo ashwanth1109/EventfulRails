@@ -58,7 +58,9 @@ class App extends Component {
                         />
                         <Route
                             path="/dashboard"
-                            render={props => <DashboardPage {...props} />}
+                            render={props => (
+                                <DashboardPage {...props} route={props} />
+                            )}
                         />
                     </div>
                 </Router>

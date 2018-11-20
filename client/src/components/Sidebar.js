@@ -54,7 +54,10 @@ class Sidebar extends Component {
                         />
                     </h4>
                     <Spacer h={20} />
-                    <div className="width200 mAuto flex center pink height40 bRad10 cPointer">
+                    <div
+                        className="width200 mAuto flex center pink height40 bRad10 cPointer"
+                        onClick={() => this.props.goBack()}
+                    >
                         Go Back
                     </div>
                 </div>
