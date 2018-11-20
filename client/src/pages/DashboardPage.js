@@ -42,17 +42,17 @@ export default class DashboardPage extends Component {
                                 eventName="Switch It Up"
                                 date="21"
                                 month="NOV"
-                                location="Bangalore, India"
+                                location="Memphis, Tenessee"
                                 startTime="07:00 PM"
                                 endTime="10:00 PM"
-                                hostedBy="ASHWANTH A R"
+                                hostedBy="EMILY RENO"
                                 eventImage={gameEvent}
                             />
                             <EventCard
                                 eventName="React, The Reaction"
                                 date="22"
                                 month="NOV"
-                                location="Chennai, India"
+                                location="Koramangala, Bangalore"
                                 startTime="07:00 PM"
                                 endTime="10:00 PM"
                                 hostedBy="ASHWANTH A R"
