@@ -1,24 +1,34 @@
-# README
+![Eventful](/client/src/assets/eventfulLogo.png)
+<p align="center">🌟<a href="https://eventful-rails.herokuapp.com/"><b>LINK TO THE APP</b></a>🌟</b>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## TECHNOLOGIES USED 💻
+* React
+* Ruby
+* Ruby On Rails
+* Postgres
 
-Things you may want to cover:
+## USER STORIES 📚
+<b>As a user...</b> I am able to create an account.
 
-* Ruby version
+<b>As a user...</b> I am able to login to see the content.
 
-* System dependencies
+<b>As a user...</b> I am able to view my profile.
 
-* Configuration
+<b>As a user...</b> I am able to update my account details.
 
-* Database creation
+<b>As a user...</b> I am able to delete my account.
 
-* Database initialization
+## THE IDEA 💡
+Starting out, we didn't really have an idea of what this project would be until we had some wireframes made. All we knew was that we were going to build an event booking app inspired by Meetup. Ashwanth made the wireframes using a program called Sketch and then Emily took those wireframes to Photoshop to create design concepts. From there, it made it a lot easier to get a feel for what we were building and what functionality would be required.
 
-* How to run the test suite
+## THE WIREFRAMES 📐
+![Wireframe of Landing Page](/ui-ux/wireframes/LANDING-PAGE.png)
+![Wireframe of Dashboard](/ui-ux/wireframes/DASHBOARD.png)
+![Wireframe of Profile](/ui-ux/wireframes/PROFILE-MODAL.png)
+![Wireframe of Category Page](/ui-ux/wireframes/EVENT-CATEGORY-PAGE.png)
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## THE DESIGNS 🎨
+![Design of Landing Page](/ui-ux/designs/eventfulLandingPage.png)
+![Design of Dashboard](/ui-ux/designs/eventfulMain.png)
+![Design of Profile](/ui-ux/designs/eventfulUserModal.png)
+![Design of Category Page](/ui-ux/designs/eventfulCatPage.png)
